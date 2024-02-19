@@ -1,10 +1,13 @@
 import 'package:fludert/assets/auth_txtfields.dart';
 import 'package:fludert/assets/guest_log.dart';
 import 'package:fludert/assets/sign_button.dart';
+import 'package:fludert/assets/square_tile.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage ({super.key});
+
+  //text edditting controllers
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -27,17 +30,20 @@ class LoginPage extends StatelessWidget {
           child: SafeArea(
             child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 50),
-          
-                  Icon(
+                  const SizedBox(height: 40),
+
+                  // logo          
+                  const Icon(
                     Icons.lock,
                     size: 100,
                   ),
           
-                  const SizedBox(height: 50),
-          
-                  Text(
+                  const SizedBox(height: 40),
+
+                  // welcome text          
+                  const Text(
                     "Welcome To Fludert",
                     style: TextStyle(
                       color: Colors.white,
@@ -47,6 +53,8 @@ class LoginPage extends StatelessWidget {
                   ),
           
                   const SizedBox(height: 25,),
+
+                  //user name text field
           
                   AuthTxtField(
                     controller: usernameController,
@@ -55,6 +63,8 @@ class LoginPage extends StatelessWidget {
                   ),
           
                   const SizedBox(height: 10),
+
+                  //password text field
           
                   AuthTxtField(
                     controller: passwordController,
@@ -63,6 +73,8 @@ class LoginPage extends StatelessWidget {
                   ),
           
                   const SizedBox(height: 10,),
+
+                  //forgot password
           
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -78,13 +90,74 @@ class LoginPage extends StatelessWidget {
                   ),
           
                   const SizedBox(height: 25),
+
+                  //Signin button
           
                   SignButton(onTap: signInUser),
           
                   const SizedBox(height: 10,),
+
+                  //Guest login
           
                   GuestLogButton(onTap: signInUser),
-          
+
+                  const SizedBox(height: 25,),
+
+                  //or continue with google
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            thickness: 0.5,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text(
+                            'Or continue with',
+                            style: TextStyle(color: Colors.grey[700]),
+                          )
+                        ),
+                        Expanded(
+                          child: Divider(
+                            thickness: 0.5,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                    
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 30,),
+
+                  //Google logo
+                  const SquareTile(imagePath: 'assets/google.png'),
+
+                  const SizedBox(height: 30,),
+
+                  //register now
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    Text(
+                      'Not a user?',
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                    const SizedBox(width: 4,),
+                    const Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ) 
+                     
               
               ],),
             ),
