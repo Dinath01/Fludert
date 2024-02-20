@@ -1,5 +1,13 @@
+import 'package:fludert/assets/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+
+void main() => runApp(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: LoginPage(),
+      ),
+    );
 
 class LoginPage extends StatelessWidget {
   @override
@@ -67,13 +75,11 @@ class LoginPage extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                
                                 Image.asset(
                                   'assets/images/logo.png',
                                   width: 150,
                                   height: 150,
                                 ),
-                              
                                 SizedBox(height: 10),
                                 Text(
                                   "Welcome to Fludert",
@@ -156,12 +162,22 @@ class LoginPage extends StatelessWidget {
                               Color.fromRGBO(143, 148, 251, 1),
                               Color.fromRGBO(143, 148, 251, .6),
                             ])),
-                        child: Center(
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignUpScreen(),
+                              ),
+                            );
+                          },
+                          child: Center(
+                            child: Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       ),
@@ -178,7 +194,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     FadeInUp(
                       duration: Duration(milliseconds: 2200),
-                      child: buildButton("Sign Up"),
+                      child: buildButton("Login"),
                     ),
                     SizedBox(
                       height: 70,
