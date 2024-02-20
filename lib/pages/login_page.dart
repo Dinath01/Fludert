@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/images/light-1.png'))),
+                                  image: AssetImage('assets/images/Waves I.png'))),
                         ),
                       ),
                     ),
@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/images/light-2.png'))),
+                                  image: AssetImage('assets/images/Waves II.png'))),
                         ),
                       ),
                     ),
@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/images/clock.png'))),
+                                  image: AssetImage('assets/images/Hand I.png'))),
                         ),
                       ),
                     ),
@@ -67,13 +67,13 @@ class LoginPage extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // Logo Image
+                                
                                 Image.asset(
                                   'assets/images/logo.png',
                                   width: 150,
                                   height: 150,
                                 ),
-                                // Text below the logo
+                              
                                 SizedBox(height: 10),
                                 Text(
                                   "Welcome to Fludert",
