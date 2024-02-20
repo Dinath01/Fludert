@@ -9,13 +9,13 @@ class AuthTxtField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    required this.obscureText,
+    required this.obscureText, required InputDecoration inputDecoration,
     });
 
   @override
   Widget build(BuildContext context){
     return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                padding: const EdgeInsets.symmetric(horizontal: 50.0),
                 child: TextField(
                   controller: controller,
                   obscureText: obscureText,

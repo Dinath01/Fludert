@@ -11,10 +11,10 @@ class SignButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(15),
-        margin: EdgeInsets.symmetric(horizontal: 120),
+        margin: EdgeInsets.symmetric(horizontal: 220),
         decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(8),
+          color: Colors.purple[900],
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
           child: Text(
