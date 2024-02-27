@@ -1,4 +1,6 @@
-const { User, Report } = require("../model/model.js");
+const { User, Report, Guest, Notifications } = require("../model/model.js");
+
+// User
 
 const addNewUser = (req, res) => {
   const newUser = new User(req.body);
@@ -22,6 +24,9 @@ const getUser = (req, res) => {
     });
 };
 
+
+// Report
+
 const addReport = (req, res) => {
   const newUser = new Report(req.body);
   newUser
@@ -43,4 +48,62 @@ const getReport = (req, res) => {
       res.send(error);
     });
 };
-module.exports = { addNewUser, getUser, addReport, getReport };
+
+
+// Guest
+
+const addGuest = (req, res) => {
+  const newUser = new Guest(req.body);
+  newUser
+    .save()
+    .then((guest) => {
+      res.json(guest);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const getGuest = (req, res) => {
+  User.find({})
+    .then((guest) => {
+      res.json(guest);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+// notification
+
+const addNotifications = (req,res)=>{
+  const newUser = new Notifications(req.body);
+  newUser
+  .save()
+  .then((notification) =>{
+    res.json(notification);
+  })
+  .catch((error) =>{
+    res.json(error)
+  })
+}
+
+const getNotifications = (req, res) => {
+  User.find({})
+    .then((notification) => {
+      res.json(notification);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+module.exports = {
+  addNewUser,
+  getUser,
+  addReport,
+  getReport,
+  addGuest,
+  getGuest,
+  addNotifications,
+  getNotifications
+};
