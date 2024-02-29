@@ -37,12 +37,20 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_inset_box_shadow: ^1.0.8
   animate_do: ^3.3.3
-  page_transition: ^2.1.0
-  animated_splash_screen: ^1.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  animated_splash_screen: ^1.3.0
+  flutter_launcher_icons: ^0.13.1
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/Logo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/forlogo.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
