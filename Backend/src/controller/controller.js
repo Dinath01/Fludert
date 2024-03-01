@@ -1,4 +1,4 @@
-const { User, Report } = require("../model/model.js");
+const { User, Report, Guest } = require("../model/model.js");
 
 const addNewUser = (req, res) => {
   const newUser = new User(req.body);
@@ -35,7 +35,7 @@ const addReport = (req, res) => {
 };
 
 const getReport = (req, res) => {
-  User.find({})
+  Report.find({})
     .then((report) => {
       res.json(report);
     })
@@ -43,4 +43,33 @@ const getReport = (req, res) => {
       res.send(error);
     });
 };
-module.exports = { addNewUser, getUser, addReport, getReport };
+
+const addGuest = (req, res) => {
+  const newUser = new Guest(req.body);
+  newUser
+    .save()
+    .then((guest) => {
+      res.json(guest);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const getGuest = (req, res) => {
+  Guest.find({})
+    .then((guest) => {
+      res.json(guest);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+module.exports = {
+  addNewUser,
+  getUser,
+  addReport,
+  getReport,
+  addGuest,
+  getGuest,
+};
