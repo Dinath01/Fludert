@@ -192,7 +192,7 @@ export default function Home() {
             <div className="section-content-4-content-2">
               <div className="box">
                 <div className="section-content-4-content-2-content-1">
-                  <h1>Flood Metrics</h1>
+                  <h1 >Flood Metrics</h1>
                   <p>Key data insights on flood management</p>
                 </div>
               </div>
@@ -202,27 +202,21 @@ export default function Home() {
                     <div className="square">
                       <p>Flood Incidents</p>
                       <h1 style={{ marginTop: "10px" }}>152</h1>
-                      <p style={{ marginTop: "10px" }}>
-                        +10% compared to last month
-                      </p>
+                      <p style={{ marginTop: "10px" }}>+10% compared to last month</p>
                     </div>
                   </div>
                   <div className="section-content-4-content-2-content-2-content-2">
                     <div className="square">
                       <p>Evacuations</p>
                       <h1 style={{ marginTop: "10px" }}>67</h1>
-                      <p style={{ marginTop: "10px" }}>
-                        -5% compared to last month
-                      </p>
+                      <p style={{ marginTop: "10px" }}>-5% compared to last month</p>
                     </div>
                   </div>
                   <div className="section-content-4-content-2-content-2-content-3">
                     <div className="square">
                       <p>Alerts Sent</p>
                       <h1 style={{ marginTop: "10px" }}>768</h1>
-                      <p style={{ marginTop: "10px" }}>
-                        +15% compared to last month
-                      </p>
+                      <p style={{ marginTop: "10px" }}>+15% compared to last month</p>
                     </div>
                   </div>
                 </div>
