@@ -1,0 +1,176 @@
+.students_details {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.students_details a {
+  color: black;
+}
+
+.arrow-left {
+  /* width: 35px; */
+  height: 100%;
+  /* background-color: red; */
+  position: absolute;
+  z-index: 2;
+  left: -5px;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+
+.arrow-right {
+  /* width: 35px; */
+  height: 100%;
+  /* background-color: red; */
+  position: absolute;
+  z-index: 2;
+  right: -5px;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+
+.arrow-left i,
+.arrow-right i {
+  cursor: pointer;
+  font-size: 40px;
+  color: #363636;
+}
+
+.student-details-content {
+  width: calc(100% - 80px);
+  overflow-x: auto;
+  display: flex;
+  overflow-y: hidden;
+  height: 400px;
+  align-items: center;
+}
+
+.student-details-content::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.card {
+  min-width: 270px;
+  height: 180px;
+  border-radius: 15px;
+  margin-right: 20px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  position: relative;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  height: 360px;
+}
+
+.student-details-content .card:first-child {
+  margin-left: 10px;
+}
+
+.student-details-content .card:last-child {
+  margin-right: 10px;
+}
+
+.card-top {
+  width: 100%;
+  height: 180px;
+  background-color: rgb(106, 0, 255);
+
+  position: relative;
+  z-index: 1;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.card:hover .card-top {
+  border-bottom-left-radius: 30px;
+}
+
+.left-page-down {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgb(255, 255, 255);
+  z-index: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.card-bottom {
+  width: 100%;
+  height: 180px;
+  background-color: rgb(255, 255, 255);
+  border-top-right-radius: 30px;
+  position: relative;
+  z-index: 1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.right-page-down {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  background-color: var(--color);
+  z-index: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.card-image {
+  width: 150px;
+  height: 150px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-image img {
+  width: 135px;
+  height: 135px;
+  border-radius: 100%;
+  border: 5px solid var(--color);
+}
+
+.card-bottom-content {
+  width: 100%;
+}
+
+.card-bottom-content h3 {
+  font-size: 18px;
+  font-family: "Lexend", sans-serif;
+  margin-top: 20px;
+  text-align: center;
+}
+.card-bottom-content p {
+  font-family: "abel", sans-serif;
+  margin-top: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+
+
