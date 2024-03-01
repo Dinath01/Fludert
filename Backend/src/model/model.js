@@ -23,23 +23,7 @@ const reports = new Schema({
   time: String,
 });
 
-const guest = new Schema({
-  guestId: String,
-  guestName: String,
-  guestEmail: String,
-  location: String,
-});
-
-const notification = new Schema({
-  notificationId: String,
-  message: String,
-  userId: String,
-  notificationType: String,
-});
-
 const User = mongoose.model("User", userSchema);
-const Report = mongoose.model("Report", reports);
-const Guest = mongoose.model("Guest", guest);
-const Notifications = mongoose.model("Notifications", notification);
+const Report = mongoose.model("Report",reports);
 
-module.exports = { User, Report, Guest, Notifications };
+module.exports = { User, Report };
