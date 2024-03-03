@@ -1,4 +1,5 @@
 import 'package:fludert/assets/signup_screen.dart';
+import 'package:fludert/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 
@@ -186,8 +187,34 @@ class LoginPage extends StatelessWidget {
                       height: 20,
                     ),
                     FadeInUp(
-                      duration: Duration(milliseconds: 2100),
-                      child: buildButton("Guest Login"),
+                      duration: Duration(milliseconds: 1900),
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(colors: [
+                              Color.fromRGBO(143, 148, 251, 1),
+                              Color.fromRGBO(143, 148, 251, .6),
+                            ])),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              ),
+                            );
+                          },
+                          child: Center(
+                            child: Text(
+                              "Guest Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 20,
