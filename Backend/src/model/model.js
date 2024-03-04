@@ -37,9 +37,31 @@ const notification = new Schema({
   notificationType: String,
 });
 
+const ngo = new Schema({
+  ngoName: String,
+  ngoEmail: String,
+  ngoNumber: String,
+});
+
+const mlModel = new Schema({
+  modelId: String,
+  trainingData: String,
+  modelType: String,
+});
+
+const waterLevel = new Schema({
+  waterLevelId: String,
+  location: String,
+  time: Date,
+  waterLevelUnit: String,
+});
+
 const User = mongoose.model("User", userSchema);
 const Report = mongoose.model("Report", reports);
 const Guest = mongoose.model("Guest", guest);
 const Notification = mongoose.model("Notification", notification);
+const Ngo = mongoose.model("Ngo", ngo);
+const Mlmodel = mongoose.model("Mlmodel", mlModel);
+const WaterLevel = mongoose.model("WaterLevel", waterLevel);
 
-module.exports = { User, Report, Guest, Notification };
+module.exports = { User, Report, Guest, Notification, Ngo, Mlmodel, WaterLevel };

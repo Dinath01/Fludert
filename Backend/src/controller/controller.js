@@ -1,4 +1,4 @@
-const { User, Report, Guest, Notification } = require("../model/model.js");
+const { User, Report, Guest, Notification, Ngo, Mlmodel, WaterLevel } = require("../model/model.js");
 
 const addNewUser = (req, res) => {
   const newUser = new User(req.body);
@@ -88,6 +88,73 @@ const getNotification = (req, res) => {
     });
 };
 
+const addNgo = (req, res) => {
+  const newUser = new Ngo(req.body);
+  newUser
+    .save()
+    .then((ngo) => {
+      res.json(ngo);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const getNgo = (req, res) => {
+  Ngo.find({})
+    .then((ngo) => {
+      res.json(ngo);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+
+const addMlmodel = (req, res) => {
+  const newUser = new Mlmodel(req.body);
+  newUser
+    .save()
+    .then((Mlmodel) => {
+      res.json(Mlmodel);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const getMlmodel = (req, res) => {
+  Mlmodel.find({})
+    .then((Mlmodel) => {
+      res.json(Mlmodel);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const addWaterlevel = (req, res) => {
+  const newUser = new WaterLevel(req.body);
+  newUser
+    .save()
+    .then((waterLevel) => {
+      res.json(waterLevel);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const getWaterlevel= (req, res) => {
+  WaterLevel.find({})
+    .then((waterLevel) => {
+      res.json(waterLevel);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
 module.exports = {
   addNewUser,
   getUser,
@@ -97,4 +164,10 @@ module.exports = {
   getGuest,
   addNotification,
   getNotification,
+  addNgo,
+  getNgo,
+  addMlmodel,
+  getMlmodel,
+  addWaterlevel,
+  getWaterlevel
 };
