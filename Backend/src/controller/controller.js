@@ -1,4 +1,15 @@
-const { User, Report, Guest, Notification, Ngo, Mlmodel, WaterLevel } = require("../model/model.js");
+const {
+  User,
+  Report,
+  Guest,
+  Notification,
+  Ngo,
+  Mlmodel,
+  WaterLevel,
+  Location,
+  UserAdmin,
+  WeatherData,
+} = require("../model/model.js");
 
 const addNewUser = (req, res) => {
   const newUser = new User(req.body);
@@ -110,7 +121,6 @@ const getNgo = (req, res) => {
     });
 };
 
-
 const addMlmodel = (req, res) => {
   const newUser = new Mlmodel(req.body);
   newUser
@@ -145,10 +155,76 @@ const addWaterlevel = (req, res) => {
     });
 };
 
-const getWaterlevel= (req, res) => {
+const getWaterlevel = (req, res) => {
   WaterLevel.find({})
     .then((waterLevel) => {
       res.json(waterLevel);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const addLocation = (req, res) => {
+  const newUser = new Location(req.body);
+  newUser
+    .save()
+    .then((location) => {
+      res.json(location);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const getLocation = (req, res) => {
+  Location.find({})
+    .then((location) => {
+      res.json(location);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const addUserAdmin = (req, res) => {
+  const newUser = new UserAdmin(req.body);
+  newUser
+    .save()
+    .then((userAdmin) => {
+      res.json(userAdmin);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const getUserAdmin = (req, res) => {
+  UserAdmin.find({})
+    .then((userAdmin) => {
+      res.json(userAdmin);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const addWeatherData = (req, res) => {
+  const newUser = new WeatherData(req.body);
+  newUser
+    .save()
+    .then((weatherData) => {
+      res.json(weatherData);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+};
+
+const getWeatherData = (req, res) => {
+  WeatherData.find({})
+    .then((weatherData) => {
+      res.json(weatherData);
     })
     .catch((error) => {
       res.send(error);
@@ -169,5 +245,11 @@ module.exports = {
   addMlmodel,
   getMlmodel,
   addWaterlevel,
-  getWaterlevel
+  getWaterlevel,
+  addLocation,
+  getLocation,
+  addUserAdmin,
+  getUserAdmin,
+  addWeatherData,
+  getWeatherData,
 };

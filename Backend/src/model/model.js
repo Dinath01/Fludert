@@ -56,6 +56,27 @@ const waterLevel = new Schema({
   waterLevelUnit: String,
 });
 
+const location = new Schema({
+  locationId: String,
+  userId: String,
+  time: Date,
+  latitude: String,
+  longitude: String,
+});
+
+const userAdmin = new Schema({
+  adminId: String,
+  adminName: String,
+  adminEmail: String,
+});
+
+const weatherData = new Schema({
+  dataId: String,
+  time: Date,
+  location: String,
+  rainfallData: String,
+});
+
 const User = mongoose.model("User", userSchema);
 const Report = mongoose.model("Report", reports);
 const Guest = mongoose.model("Guest", guest);
@@ -63,5 +84,19 @@ const Notification = mongoose.model("Notification", notification);
 const Ngo = mongoose.model("Ngo", ngo);
 const Mlmodel = mongoose.model("Mlmodel", mlModel);
 const WaterLevel = mongoose.model("WaterLevel", waterLevel);
+const Location = mongoose.model("Location", location);
+const UserAdmin = mongoose.model("UserAdmin", userAdmin);
+const WeatherData = mongoose.model("WhetherData", weatherData);
 
-module.exports = { User, Report, Guest, Notification, Ngo, Mlmodel, WaterLevel };
+module.exports = {
+  User,
+  Report,
+  Guest,
+  Notification,
+  Ngo,
+  Mlmodel,
+  WaterLevel,
+  Location,
+  UserAdmin,
+  WeatherData,
+};
