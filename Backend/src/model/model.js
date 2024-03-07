@@ -25,7 +25,17 @@ const reports = new Schema({
 
 const guest = new Schema({
   guestId: String,
-  guestEmail: String,
+  guestEmail: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: function (value) {
+        return /@gmail\.com$/.test(value);
+      },
+      message: 'Invalid email format. Please use an email address ending with @gmail.com',
+    },
+  },
   guestName: String,
   location: String,
 });
