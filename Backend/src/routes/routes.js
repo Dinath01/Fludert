@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   addNewUser,
   getUser,
+  deleteUser,
   addReport,
   getReport,
   addGuest,
@@ -25,6 +26,7 @@ const {
 } = require("../controller/controller.js");
 
 router.route("/").get(getUser).post(addNewUser);
+router.route("/:id").delete(deleteUser);
 router.route("/report").post(addReport).get(getReport);
 router.route("/guest").get(getGuest).post(addGuest);
 router.route("/notification").get(getNotification).post(addNotification);

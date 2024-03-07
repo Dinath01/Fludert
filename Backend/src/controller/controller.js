@@ -33,6 +33,23 @@ const getUser = (req, res) => {
     });
 };
 
+
+const deleteUser = (req, res) => {
+  const userId = req.params.id;
+  User.findByIdAndDelete(userId)
+    .then((user) => {
+      if (!userId) {
+        res.status(400).send("User Not Found");
+      }
+      res.send("User deleted Successfull");
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+};
+
+
+
 const addReport = (req, res) => {
   const newUser = new Report(req.body);
   newUser
@@ -234,6 +251,7 @@ const getWeatherData = (req, res) => {
 module.exports = {
   addNewUser,
   getUser,
+  deleteUser,
   addReport,
   getReport,
   addGuest,
