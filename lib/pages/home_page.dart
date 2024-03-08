@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:fludert/assets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -80,111 +80,118 @@ void _changeLocation(String? newLocation) {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Text(
-                  location,
-                  style: TextStyle(fontSize: 30),
-                ),
-                Text(
-                  DateTime.now().toString().substring(0, 10),
-                  style: TextStyle(fontSize: 16),
-                ),
-                SizedBox(height: 20),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.blue[200],
-                    borderRadius: BorderRadius.circular(10),
+      body : Navbar(
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Text(
+                    location,
+                    style: TextStyle(fontSize: 30),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            '25°',
-                            style: TextStyle(fontSize: 30),
-                          ),
-                          Text(
-                            'Feels like 22°',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Image.asset('assets/images/clear.png',width: 100,height: 100,),
-                          Text(
-                            'Sunny',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            '10km/h',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Image.asset('assets/images/lightcloud.png',width: 50,height: 50,),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            '60%',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Image.asset('assets/images/humidity.png',width: 50,height: 50,),
-                        ],
-                      ),
-                    ],
+                  Text(
+                    DateTime.now().toString().substring(0, 10),
+                    style: TextStyle(fontSize: 16),
                   ),
-                ),
-              ],
+                  SizedBox(height: 20),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              '25°',
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            Text(
+                              'Feels like 22°',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Image.asset('assets/images/clear.png',width: 100,height: 100,),
+                            Text(
+                              'Sunny',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '10km/h',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            Image.asset('assets/images/lightcloud.png',width: 50,height: 50,),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '60%',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            Image.asset('assets/images/humidity.png',width: 50,height: 50,),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: consolidatedWeatherList.length,
-              itemBuilder: (context, index) {
-                var weather = consolidatedWeatherList[index];
-                return Container(
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsets.symmetric(vertical: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        DateFormat('EEE').format(DateTime.parse(
-                            weather['applicable_date'])).toUpperCase(),
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        '${weather['the_temp'].round()}°',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        weather['weather_state_name'],
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                );
-              },
+            Expanded(
+              child: ListView.builder(
+                itemCount: consolidatedWeatherList.length,
+                itemBuilder: (context, index) {
+                  var weather = consolidatedWeatherList[index];
+                  return Container(
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          DateFormat('EEE').format(DateTime.parse(
+                              weather['applicable_date'])).toUpperCase(),
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          '${weather['the_temp'].round()}°',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          weather['weather_state_name'],
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+            
+          ],
+        ),
       ),
+      ),
+      //bottomNavigationBar: Navbar(),
     );
   }
 }
