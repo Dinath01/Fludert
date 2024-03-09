@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:fludert/assets/navbar.dart';
+import 'package:fludert/assets/weather_map.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -186,7 +187,7 @@ void _changeLocation(String? newLocation) {
                 },
               ),
             ),
-            
+            //WeatherMapWidget()
           ],
         ),
       ),
