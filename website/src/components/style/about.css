@@ -1,5 +1,5 @@
-.nav-content-2 ul li:nth-child(5) a {
-  color: var(--color);
+section {
+  /* background-color: antiquewhite; */
 }
 
 .menu .menu-student {
@@ -10,6 +10,7 @@
 .students_details {
   width: 100%;
   display: flex;
+  margin-top: 80px;
   justify-content: center;
   position: relative;
 }
@@ -79,7 +80,7 @@
 
 .card:hover {
   transform: scale(1.05);
-  height: 360px;
+  height: 340px;
 }
 
 .student-details-content .card:first-child {
@@ -159,7 +160,7 @@
 }
 
 .card-image img {
-  width: 135px;
+  width: 128px;
   height: 135px;
   border-radius: 100%;
   border: 5px solid var(--color);
