@@ -17,7 +17,10 @@ const userSchema = new Schema({
 
 const reports = new Schema({
   reportId: String,
-  userId: String,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   waterLevelId: String,
   location: String,
   time: String,
@@ -33,7 +36,8 @@ const guest = new Schema({
       validator: function (value) {
         return /@gmail\.com$/.test(value);
       },
-      message: 'Invalid email format. Please use an email address ending with @gmail.com',
+      message:
+        "Invalid email format. Please use an email address ending with @gmail.com",
     },
   },
   guestName: String,
