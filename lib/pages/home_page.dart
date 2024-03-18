@@ -44,24 +44,25 @@ class _HomePageState extends State<HomePage> {
     },
   );
 
-void _changeLocation(String? newLocation) {
-  if (newLocation != null) {
-    setState(() {
-      location = newLocation;
-      consolidatedWeatherList = List.generate(
-        7,
-        (index) => {
-          'id': Random().nextInt(1000),
-          'weather_state_name': 'Sunny',
-          'wind_speed': Random().nextInt(10) + 1,
-          'applicable_date':
-              DateTime.now().add(Duration(days: index)).toString(),
-          'the_temp': Random().nextInt(30) + 15,
-        },
-      );
-    });
+  void _changeLocation(String? newLocation) {
+    if (newLocation != null) {
+      setState(() {
+        location = newLocation;
+        consolidatedWeatherList = List.generate(
+          7,
+          (index) => {
+            'id': Random().nextInt(1000),
+            'weather_state_name': 'Sunny',
+            'wind_speed': Random().nextInt(10) + 1,
+            'applicable_date':
+                DateTime.now().add(Duration(days: index)).toString(),
+            'the_temp': Random().nextInt(30) + 15,
+          },
+        );
+      });
+    }
   }
-}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,8 +72,7 @@ void _changeLocation(String? newLocation) {
           DropdownButton<String>(
             value: location,
             onChanged: _changeLocation,
-            items: cities
-                .map<DropdownMenuItem<String>>((String value) {
+            items: cities.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),
@@ -81,7 +81,7 @@ void _changeLocation(String? newLocation) {
           ),
         ],
       ),
-      body : Navbar(
+      // body : Navbar(
       body: Container(
         color: Colors.white,
         child: Column(
@@ -122,7 +122,11 @@ void _changeLocation(String? newLocation) {
                         ),
                         Column(
                           children: [
-                            Image.asset('assets/images/clear.png',width: 100,height: 100,),
+                            Image.asset(
+                              'assets/images/clear.png',
+                              width: 100,
+                              height: 100,
+                            ),
                             Text(
                               'Sunny',
                               style: TextStyle(fontSize: 16),
@@ -135,7 +139,11 @@ void _changeLocation(String? newLocation) {
                               '10km/h',
                               style: TextStyle(fontSize: 16),
                             ),
-                            Image.asset('assets/images/lightcloud.png',width: 50,height: 50,),
+                            Image.asset(
+                              'assets/images/lightcloud.png',
+                              width: 50,
+                              height: 50,
+                            ),
                           ],
                         ),
                         Column(
@@ -144,7 +152,11 @@ void _changeLocation(String? newLocation) {
                               '60%',
                               style: TextStyle(fontSize: 16),
                             ),
-                            Image.asset('assets/images/humidity.png',width: 50,height: 50,),
+                            Image.asset(
+                              'assets/images/humidity.png',
+                              width: 50,
+                              height: 50,
+                            ),
                           ],
                         ),
                       ],
@@ -169,8 +181,10 @@ void _changeLocation(String? newLocation) {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          DateFormat('EEE').format(DateTime.parse(
-                              weather['applicable_date'])).toUpperCase(),
+                          DateFormat('EEE')
+                              .format(
+                                  DateTime.parse(weather['applicable_date']))
+                              .toUpperCase(),
                           style: TextStyle(fontSize: 16),
                         ),
                         Text(
@@ -191,7 +205,7 @@ void _changeLocation(String? newLocation) {
           ],
         ),
       ),
-      ),
+      // ),
       //bottomNavigationBar: Navbar(),
     );
   }
