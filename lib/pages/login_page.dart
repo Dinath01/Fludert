@@ -1,5 +1,6 @@
 import 'package:fludert/assets/signup_screen.dart';
 import 'package:fludert/pages/home_page.dart';
+import 'package:fludert/assets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 
@@ -36,7 +37,8 @@ class LoginPage extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/images/Waves I.png'))),
+                                  image:
+                                      AssetImage('assets/images/Waves I.png'))),
                         ),
                       ),
                     ),
@@ -49,7 +51,8 @@ class LoginPage extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/images/Waves II.png'))),
+                                  image: AssetImage(
+                                      'assets/images/Waves II.png'))),
                         ),
                       ),
                     ),
@@ -63,7 +66,8 @@ class LoginPage extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/images/Hand I.png'))),
+                                  image:
+                                      AssetImage('assets/images/Hand I.png'))),
                         ),
                       ),
                     ),
@@ -125,8 +129,8 @@ class LoginPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                   border: Border(
                                       bottom: BorderSide(
-                                          color:
-                                              Color.fromRGBO(143, 148, 251, 1)))),
+                                          color: Color.fromRGBO(
+                                              143, 148, 251, 1)))),
                               child: TextField(
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -201,8 +205,7 @@ class LoginPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomePage(),
-                              ),
+                                  builder: (context) => NavigationPage()),
                             );
                           },
                           child: Center(
@@ -247,8 +250,10 @@ class LoginPage extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        gradient: LinearGradient(
-            colors: [Color.fromRGBO(143, 148, 251, 1), Color.fromRGBO(143, 148, 251, .6)]),
+        gradient: LinearGradient(colors: [
+          Color.fromRGBO(143, 148, 251, 1),
+          Color.fromRGBO(143, 148, 251, .6)
+        ]),
       ),
       child: Center(
         child: Text(
@@ -256,6 +261,15 @@ class LoginPage extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
+    );
+  }
+}
+
+class NavigationPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext contex) {
+    return Scaffold(
+      body: Navbar(body: HomePage()),
     );
   }
 }
