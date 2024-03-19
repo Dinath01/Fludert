@@ -11,7 +11,18 @@ const userSchema = new Schema({
       message: "{VALUE} is not an integer",
     },
   },
-  userEmail: String,
+  userEmail: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: function (value) {
+        return /@gmail\.com$/.test(value);
+      },
+      message:
+        "Invalid email format. Please use an email address ending with @gmail.com",
+    },
+  },
   location: String,
 });
 
@@ -23,7 +34,16 @@ const reports = new Schema({
   },
   waterLevelId: String,
   location: String,
-  time: String,
+  time: {
+    type: Date,
+    validate: {
+      validator: function (v) {
+        // Check if v is a valid Date object
+        return !isNaN(new Date(v));
+      },
+      message: (props) => `${props.value} is not a valid date!`,
+    },
+  },
 });
 
 const guest = new Schema({
@@ -53,7 +73,18 @@ const notification = new Schema({
 
 const ngo = new Schema({
   ngoName: String,
-  ngoEmail: String,
+  ngoEmail: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: function (value) {
+        return /@gmail\.com$/.test(value);
+      },
+      message:
+        "Invalid email format. Please use an email address ending with @gmail.com",
+    },
+  },
   ngoNumber: String,
 });
 
@@ -66,14 +97,32 @@ const mlModel = new Schema({
 const waterLevel = new Schema({
   waterLevelId: String,
   location: String,
-  time: Date,
+  time: {
+    type: Date,
+    validate: {
+      validator: function (v) {
+        // Check if v is a valid Date object
+        return !isNaN(new Date(v));
+      },
+      message: (props) => `${props.value} is not a valid date!`,
+    },
+  },
   waterLevelUnit: String,
 });
 
 const location = new Schema({
   locationId: String,
   userId: String,
-  time: Date,
+  time: {
+    type: Date,
+    validate: {
+      validator: function (v) {
+        // Check if v is a valid Date object
+        return !isNaN(new Date(v));
+      },
+      message: (props) => `${props.value} is not a valid date!`,
+    },
+  },
   latitude: String,
   longitude: String,
 });
@@ -81,12 +130,32 @@ const location = new Schema({
 const userAdmin = new Schema({
   adminId: String,
   adminName: String,
-  adminEmail: String,
+  adminEmail: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: function (value) {
+        return /@gmail\.com$/.test(value);
+      },
+      message:
+        "Invalid email format. Please use an email address ending with @gmail.com",
+    },
+  },
 });
 
 const weatherData = new Schema({
   dataId: String,
-  time: Date,
+  time: {
+    type: Date,
+    validate: {
+      validator: function (v) {
+        // Check if v is a valid Date object
+        return !isNaN(new Date(v));
+      },
+      message: (props) => `${props.value} is not a valid date!`,
+    },
+  },
   location: String,
   rainfallData: String,
 });
