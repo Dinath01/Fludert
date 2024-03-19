@@ -24,6 +24,9 @@ const userSchema = new Schema({
     },
   },
   location: String,
+  waterLevels: [{ type: Schema.Types.ObjectId, ref: "WaterLevel" }],
+  notifications: [{ type: Schema.Types.ObjectId, ref: "Notification" }],
+  mlModels: [{ type: Schema.Types.ObjectId, ref: "MLModel" }],
 });
 
 const reports = new Schema({
@@ -67,6 +70,10 @@ const guest = new Schema({
 const notification = new Schema({
   notificationId: String,
   message: String,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   userId: String,
   notificationType: String,
 });
