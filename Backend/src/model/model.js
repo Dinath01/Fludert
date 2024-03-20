@@ -24,17 +24,45 @@ const userSchema = new Schema({
     },
   },
   location: String,
-  waterLevels: [{ type: Schema.Types.ObjectId, ref: "WaterLevel" }],
-  notifications: [{ type: Schema.Types.ObjectId, ref: "Notification" }],
-  mlModels: [{ type: Schema.Types.ObjectId, ref: "MLModel" }],
+  reports: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Report",
+    },
+  ],
+  waterLevels: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "WaterLevel",
+    },
+  ],
+  notifications: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Notification",
+    },
+  ],
+  ngo: {
+    type: Schema.Types.ObjectId,
+    ref: "Ngo",
+  },
+  locations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Location",
+    },
+  ],
+  // Adding an array of references to weather data
+  weatherData: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "WeatherData",
+    },
+  ],
 });
 
 const reports = new Schema({
   reportId: String,
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
   waterLevelId: String,
   location: String,
   time: {
@@ -65,17 +93,34 @@ const guest = new Schema({
   },
   guestName: String,
   location: String,
+  // Adding an array of references to locations
+  locations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Location",
+    },
+  ],
+  // Adding an array of references to weather data
+  weatherData: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "WeatherData",
+    },
+  ],
 });
 
 const notification = new Schema({
   notificationId: String,
   message: String,
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
   userId: String,
   notificationType: String,
+  // Adding an array of references to locations
+  locations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Location",
+    },
+  ],
 });
 
 const ngo = new Schema({
@@ -99,6 +144,20 @@ const mlModel = new Schema({
   modelId: String,
   trainingData: String,
   modelType: String,
+  // Adding an array of references to users
+  users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  // Adding an array of references to weather data
+  weatherData: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "WeatherData",
+    },
+  ],
 });
 
 const waterLevel = new Schema({
@@ -149,6 +208,20 @@ const userAdmin = new Schema({
         "Invalid email format. Please use an email address ending with @gmail.com",
     },
   },
+  // Adding an array of references to users
+  users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  // Adding an array of references to weather data
+  weatherData: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "WeatherData",
+    },
+  ],
 });
 
 const weatherData = new Schema({
