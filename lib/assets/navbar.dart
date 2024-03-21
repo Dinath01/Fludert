@@ -1,4 +1,4 @@
-import 'package:fludert/pages/alert_page.dart';
+import 'package:fludert/pages/collab_page.dart';
 import 'package:fludert/pages/home_page.dart';
 import 'package:fludert/pages/profile_screen.dart';
 import 'package:fludert/pages/settings_page.dart';
@@ -19,7 +19,7 @@ class _NavbarState extends State<Navbar> {
   GlobalKey _bottomNavigationKey = GlobalKey();
   final screens = [
     HomePage(),
-    AlertPage(),
+    CollaboratorsPage(),
     ProfileScreen(),
     SettingsPage(),
   ];
