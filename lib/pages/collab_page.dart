@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Collaborators',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: const CollaboratorsPage(),
     );
@@ -26,14 +27,14 @@ class CollaboratorsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Collaborators'),
+        title: const Text('Collaborators'),
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.blue, Colors.indigo],
+            colors: [Color.fromARGB(255, 116, 65, 210), Colors.deepPurple.shade200],
           ),
         ),
         child: ListView(
@@ -41,7 +42,7 @@ class CollaboratorsPage extends StatelessWidget {
             CollaboratorCard(
               name: 'Leo Club',
               description:
-                  'Community Club 1 is actively involved in local flood prevention activities.',
+                  'Leo Club is a community that whatever blah blah blah.',
             ),
             CollaboratorCard(
               name: 'SLRCS',
@@ -62,6 +63,22 @@ class CollaboratorsPage extends StatelessWidget {
               name: 'DMC',
               description:
                   'The Disaster Management Center (DMC) of Sri Lanka stands as the apex governmental body dedicated to coordinating and executing comprehensive disaster preparedness, response, and recovery initiatives across the nation. Established to address the growing challenges posed by natural and man-made calamities, the DMC operates under the purview of the Ministry of Disaster Management. With its strategic framework grounded in risk reduction, mitigation, and swift response mechanisms, the DMC plays a pivotal role in safeguarding lives, infrastructure, and livelihoods, thereby fostering resilience and sustainable development throughout Sri Lanka.',
+            ),
+            ServiceCard(
+              icon: Icons.local_hospital,
+              title: 'Ambulance',
+            ),
+            ServiceCard(
+              icon: Icons.phone,
+              title: 'Calls',
+            ),
+            ServiceCard(
+              icon: Icons.monetization_on,
+              title: 'Money',
+            ),
+            ServiceCard(
+              icon: Icons.local_offer,
+              title: 'Insurance',
             ),
           ],
         ),
@@ -90,12 +107,12 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
-      margin: EdgeInsets.all(10),
+      duration: const Duration(milliseconds: 300),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black26,
             offset: Offset(0, 2),
@@ -109,7 +126,7 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
           ListTile(
             title: Text(
               widget.name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -128,10 +145,52 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: Text(
                 widget.description,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+class ServiceCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+
+  const ServiceCard({
+    Key? key,
+    required this.icon,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(10),
+      color: Colors.deepPurple.shade200,
+      child: SizedBox(
+        height: 120,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 48,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
