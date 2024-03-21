@@ -1,3 +1,4 @@
+import 'package:fludert/assets/weather_map.dart';
 import 'package:fludert/pages/flash_screen.dart';
 import 'package:flutter/material.dart';
 import 'pages/login_page.dart';

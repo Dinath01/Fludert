@@ -1,7 +1,9 @@
 import 'dart:math';
+import 'dart:ui';
 import 'package:fludert/assets/navbar.dart';
 import 'package:fludert/assets/weather_map.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 void main() {
@@ -62,6 +64,8 @@ class _HomePageState extends State<HomePage> {
       });
     }
   }
+
+  String floodSeverity = 'Severe'; 
 
   @override
   Widget build(BuildContext context) {
@@ -162,45 +166,13 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
+                  FloodSeverityCard(severityLevel: floodSeverity),
+                  
+
                 ],
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: consolidatedWeatherList.length,
-                itemBuilder: (context, index) {
-                  var weather = consolidatedWeatherList[index];
-                  return Container(
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.symmetric(vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          DateFormat('EEE')
-                              .format(
-                                  DateTime.parse(weather['applicable_date']))
-                              .toUpperCase(),
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          '${weather['the_temp'].round()}°',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          weather['weather_state_name'],
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
+            
             //WeatherMapWidget()
           ],
         ),
@@ -210,3 +182,76 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+class FloodSeverityCard extends StatelessWidget {
+  final String severityLevel;
+
+  const FloodSeverityCard({Key? key, required this.severityLevel})
+    : super(key: key); 
+
+    Color _getColorForSeverity(String severityLevel) {
+    switch (severityLevel.toLowerCase()) {
+      case 'severe':
+        return Colors.red;
+      case 'mid':
+        return Colors.orange;
+      case 'safe':
+        return Colors.green;
+      default:
+        return Colors.grey;
+    }
+  }  
+
+  @override
+  Widget build(BuildContext context) {
+    Color backgroundColor = _getColorForSeverity(severityLevel);
+        String assetName = '';
+    
+    switch (severityLevel.toLowerCase()) {
+      case 'severe':
+        assetName = 'assets/images/Severe.png';
+        break;
+      case 'mid':
+        assetName = 'assets/images/Mid.png';
+        break;
+      case 'safe':
+        assetName = 'assets/images/Light.png';
+        break;
+      default:
+        assetName = '';
+        break;
+    }
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [Text(
+          "Flood Severity",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
+          textAlign: TextAlign.center,
+        ),
+          SizedBox(height: 10),
+          Text(
+            'Current Severity Level: $severityLevel',
+            style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.center,
+          ),
+          // Add relevant image based on severity level
+          if (assetName.isNotEmpty)
+            Image.asset(
+              assetName,
+              width: 80,
+              height: 80,
+            ),
+        ],
+      ),
+    );
+  }
+}
+
