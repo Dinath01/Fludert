@@ -228,9 +228,25 @@ class FloodSeverityCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white70.withOpacity(1),
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: Offset(0,3),
+          )
+        ],
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            backgroundColor.withOpacity(0.8),
+            backgroundColor.withOpacity(1),
+          ]
+        )
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [Text(
           "Flood Severity",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
@@ -238,16 +254,18 @@ class FloodSeverityCard extends StatelessWidget {
         ),
           SizedBox(height: 10),
           Text(
-            'Current Severity Level: $severityLevel',
+            'Severity Level: $severityLevel',
             style: TextStyle(fontSize: 16),
             textAlign: TextAlign.center,
           ),
           // Add relevant image based on severity level
           if (assetName.isNotEmpty)
-            Image.asset(
-              assetName,
-              width: 80,
-              height: 80,
+            Center(
+              child: Image.asset(
+                assetName,
+                width: 60,
+                height: 60,
+              ),
             ),
         ],
       ),
