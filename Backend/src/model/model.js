@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const userSchema = new Schema({
   userId: String,
   userName: String,
@@ -251,6 +252,7 @@ const Location = mongoose.model("Location", location);
 const UserAdmin = mongoose.model("UserAdmin", userAdmin);
 const WeatherData = mongoose.model("WhetherData", weatherData);
 
+// export to the Controller Page
 module.exports = {
   User,
   Report,
