@@ -143,9 +143,34 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
           if (_expanded)
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-              child: Text(
-                widget.description,
-                style: const TextStyle(fontSize: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.description,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          // Action to contact via email
+                        },
+                        icon: Icon(Icons.email),
+                        label: Text('Email'),
+                      ),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          // Action to contact via phone
+                        },
+                        icon: Icon(Icons.phone),
+                        label: Text('Call'),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
         ],
@@ -153,6 +178,7 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
     );
   }
 }
+
 
 class ServiceCard extends StatelessWidget {
   final IconData icon;
