@@ -67,18 +67,30 @@ class CollaboratorsPage extends StatelessWidget {
             ServiceCard(
               icon: Icons.local_hospital,
               title: 'Ambulance',
-            ),
+               onPressed: () {
+                //action
+                  },
+              ),
             ServiceCard(
               icon: Icons.phone,
               title: 'Calls',
+              onPressed: () {
+                
+              },
             ),
-            ServiceCard(
+           ServiceCard(
               icon: Icons.monetization_on,
               title: 'Money',
+              onPressed: () {
+             
+            },
             ),
             ServiceCard(
               icon: Icons.local_offer,
               title: 'Insurance',
+              onPressed: () {
+               
+              },
             ),
           ],
         ),
@@ -156,14 +168,14 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
                     children: [
                       ElevatedButton.icon(
                         onPressed: () {
-                          // Action to contact via email
+                          
                         },
                         icon: Icon(Icons.email),
                         label: Text('Email'),
                       ),
                       ElevatedButton.icon(
                         onPressed: () {
-                          // Action to contact via phone
+                        
                         },
                         icon: Icon(Icons.phone),
                         label: Text('Call'),
@@ -183,40 +195,43 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
 class ServiceCard extends StatelessWidget {
   final IconData icon;
   final String title;
+  final VoidCallback? onPressed;
 
   const ServiceCard({
     Key? key,
     required this.icon,
     required this.title,
+    this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(10),
-      color: Colors.deepPurple.shade200,
-      child: SizedBox(
-        height: 120,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 48,
-                color: Colors.white,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.deepPurple.shade200,
+        padding: const EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
         ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 48,
+            color: Colors.white,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
     );
   }
