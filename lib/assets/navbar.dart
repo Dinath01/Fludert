@@ -1,3 +1,4 @@
+import 'package:fludert/pages/about_us.dart';
 import 'package:fludert/pages/collab_page.dart';
 import 'package:fludert/pages/home_page.dart';
 import 'package:fludert/pages/profile_screen.dart';
@@ -22,6 +23,7 @@ class _NavbarState extends State<Navbar> {
     CollaboratorsPage(),
     ProfileScreen(),
     SettingsPage(),
+    AboutUsPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,9 @@ class _NavbarState extends State<Navbar> {
       ),
       Icon(
         Icons.settings,
+      ),
+      Icon(
+        Icons.update,
       ),
     ];
 
