@@ -90,7 +90,7 @@ class LoginPage extends StatelessWidget {
                                   "Welcome to Fludert",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
