@@ -2,7 +2,8 @@ import React from "react";
 import Nav from "../components/Nav.js";
 import "../components/style/about.css";
 import ravindu from "../Images/ravindu.jpg";
-import dinath from "../Images/dinath.jpg";
+import dinath1 from "../Images/dinath.jpg";
+import Trevin from "../Images/trevin.jpg";
 import kasun from "../Images/kasun.jpg";
 import tharani from "../Images/tharani.jpg";
 import shaleen from "../Images/shaleen.jpg";
@@ -24,7 +25,7 @@ export default function About() {
               <div className="card">
                 <div class="card-top">
                   <div class="card-image">
-                    <img src={dinath} alt="" />
+                    <img src={dinath1} alt="" />
                   </div>
                 </div>
                 <div class="card-bottom">
@@ -62,7 +63,7 @@ export default function About() {
               <div className="card">
                 <div class="card-top">
                   <div class="card-image">
-                  {/* <img src={dinath} alt="" /> */}
+                    <img src={Trevin} alt="" />
                   </div>
                 </div>
                 <div class="card-bottom">
@@ -81,7 +82,7 @@ export default function About() {
               <div className="card">
                 <div class="card-top">
                   <div class="card-image">
-                  <img src={shaleen} alt="" />
+                    <img src={shaleen} alt="" />
                   </div>
                 </div>
                 <div class="card-bottom">
@@ -100,7 +101,7 @@ export default function About() {
               <div className="card">
                 <div class="card-top">
                   <div class="card-image">
-                  <img src={kasun} alt="" />
+                    <img src={kasun} alt="" />
                   </div>
                 </div>
                 <div class="card-bottom">
@@ -119,7 +120,7 @@ export default function About() {
               <div className="card">
                 <div class="card-top">
                   <div class="card-image">
-                  <img src={tharani} alt="" />
+                    <img src={tharani} alt="" />
                   </div>
                 </div>
                 <div class="card-bottom">

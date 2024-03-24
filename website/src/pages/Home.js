@@ -2,7 +2,12 @@ import React from "react";
 import Nav from "../components/Nav.js";
 import Footer from "../components/Footer.js";
 import "../components/style/Home.css";
-// import Image from "../Images/Home1.jpg";
+import Welcome from "../Images/welcome.jpg";
+import Alert from "../Images/alert.jpg";
+import Evacuation from "../Images/evacuation.jpg";
+import Colab from "../Images/colab.jpg";
+import Track from "../Images/track.jpg";
+import Trevin from "../Images/trevin.jpg";
 
 export default function Home() {
   return (
@@ -21,7 +26,11 @@ export default function Home() {
                 </div>
               </div>
               <div className="section-content-1-content-2">
-                <img src={Image} alt="" style={{ width: "500px" }} />
+                <img
+                  src={Welcome}
+                  alt=""
+                  style={{ height: "450px", width: "100%" }}
+                />
               </div>
             </div>
           </div>
@@ -40,7 +49,18 @@ export default function Home() {
                 <div className="section-content-2-content-2">
                   <div className="section-content-2-content-2-cards">
                     <div className="section-content-2-content-2-card-1">
-                      <div className="section-content-2-Image"></div>
+                      <div className="section-content-2-Image">
+                        <img
+                          src={Alert}
+                          alt=""
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                            borderTopLeftRadius: "10px",
+                            borderTopRightRadius: "10px",
+                          }}
+                        />
+                      </div>
                       <div className="section-content-2-description">
                         <div className="section-content-2-description-para">
                           <p>Real time Flood Notifications</p>
@@ -50,7 +70,18 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="section-content-2-content-2-card-2">
-                      <div className="section-content-2-Image"></div>
+                      <div className="section-content-2-Image">
+                        <img
+                          src={Evacuation}
+                          alt=""
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                            borderTopLeftRadius: "10px",
+                            borderTopRightRadius: "10px",
+                          }}
+                        />
+                      </div>
                       <div className="section-content-2-description">
                         <div className="section-content-2-description-para">
                           <p>Evacuation Routes</p>
@@ -60,7 +91,18 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="section-content-2-content-2-card-3">
-                      <div className="section-content-2-Image"></div>
+                      <div className="section-content-2-Image">
+                        <img
+                          src={Track}
+                          alt=""
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                            borderTopLeftRadius: "10px",
+                            borderTopRightRadius: "10px",
+                          }}
+                        />
+                      </div>
                       <div className="section-content-2-description">
                         <div className="section-content-2-description-para">
                           <p>Flood monitoring</p>
@@ -70,7 +112,18 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="section-content-2-content-2-card-4">
-                      <div className="section-content-2-Image"></div>
+                      <div className="section-content-2-Image">
+                        <img
+                          src={Colab}
+                          alt=""
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                            borderTopLeftRadius: "10px",
+                            borderTopRightRadius: "10px",
+                          }}
+                        />
+                      </div>
                       <div className="section-content-2-description">
                         <div className="section-content-2-description-para">
                           <p>Collobaraters</p>
@@ -98,7 +151,16 @@ export default function Home() {
                 </div>
                 <div className="section-content-3-content-2">
                   <div className="section-content-3-content-2-content-1">
-                    <div className="box-1"></div>
+                    <div className="box-1">
+                      <img
+                        src={Alert}
+                        alt=""
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      />
+                    </div>
                     <div className="box-2">
                       <h3>Real Time Data Analysis</h3>
                       <p style={{ fontSize: "15px" }}>
@@ -111,7 +173,16 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="section-content-3-content-2-content-2">
-                    <div className="box-1"></div>
+                    <div className="box-1">
+                      <img
+                        src={Track}
+                        alt=""
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      />
+                    </div>
                     <div className="box-2">
                       <h3>Intelligent Alerts</h3>
                       <p style={{ fontSize: "15px" }}>
@@ -124,7 +195,16 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="section-content-3-content-2-content-3">
-                    <div className="box-1"></div>
+                    <div className="box-1">
+                      <img
+                        src={Colab}
+                        alt=""
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      />
+                    </div>
                     <div className="box-2">
                       <h3>Plan Evacuation Routes</h3>
                       <p style={{ fontSize: "15px" }}>
@@ -151,7 +231,17 @@ export default function Home() {
                   <div className="section-content-4-content-1-content-2">
                     <div className="section-content-4-content-1-content-2-content-1">
                       <div className="review">
-                        <div className="section-content-4-content-1-content-2-content-1-box-1"></div>
+                        <div className="section-content-4-content-1-content-2-content-1-box-1">
+                          <img
+                            src={Trevin}
+                            alt=""
+                            style={{
+                              height: "100%",
+                              width: "100%",
+                              borderRadius: "50%",
+                            }}
+                          />
+                        </div>
 
                         <h5>John Doe</h5>
                         <i class="ri-star-s-fill"></i>
@@ -169,7 +259,17 @@ export default function Home() {
                     </div>
                     <div className="section-content-4-content-1-content-2-content-2">
                       <div className="review">
-                        <div className="section-content-4-content-1-content-2-content-1-box-1"></div>
+                        <div className="section-content-4-content-1-content-2-content-1-box-1">
+                          <img
+                            src={Trevin}
+                            alt=""
+                            style={{
+                              height: "100%",
+                              width: "100%",
+                              borderRadius: "50%",
+                            }}
+                          />
+                        </div>
 
                         <h5>Jane Smith</h5>
                         <i class="ri-star-s-fill"></i>
@@ -192,7 +292,7 @@ export default function Home() {
             <div className="section-content-4-content-2">
               <div className="box">
                 <div className="section-content-4-content-2-content-1">
-                  <h1 >Flood Metrics</h1>
+                  <h1>Flood Metrics</h1>
                   <p>Key data insights on flood management</p>
                 </div>
               </div>
@@ -202,21 +302,27 @@ export default function Home() {
                     <div className="square">
                       <p>Flood Incidents</p>
                       <h1 style={{ marginTop: "10px" }}>152</h1>
-                      <p style={{ marginTop: "10px" }}>+10% compared to last month</p>
+                      <p style={{ marginTop: "10px" }}>
+                        +10% compared to last month
+                      </p>
                     </div>
                   </div>
                   <div className="section-content-4-content-2-content-2-content-2">
                     <div className="square">
                       <p>Evacuations</p>
                       <h1 style={{ marginTop: "10px" }}>67</h1>
-                      <p style={{ marginTop: "10px" }}>-5% compared to last month</p>
+                      <p style={{ marginTop: "10px" }}>
+                        -5% compared to last month
+                      </p>
                     </div>
                   </div>
                   <div className="section-content-4-content-2-content-2-content-3">
                     <div className="square">
                       <p>Alerts Sent</p>
                       <h1 style={{ marginTop: "10px" }}>768</h1>
-                      <p style={{ marginTop: "10px" }}>+15% compared to last month</p>
+                      <p style={{ marginTop: "10px" }}>
+                        +15% compared to last month
+                      </p>
                     </div>
                   </div>
                 </div>
