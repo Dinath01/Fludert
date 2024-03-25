@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:video_player/video_player.dart';
+import 'package:chewie/chewie.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,12 +43,33 @@ class _HomePageState extends State<HomePage> {
 
   final TextEditingController _locationController = TextEditingController();
 
+  late VideoPlayerController _controller;
+  late ChewieController _chewieController;
+
   @override
   void initState() {
     super.initState();
     location = 'Colombo'; //default
     fetchWeather();
+    _controller = VideoPlayerController.asset('assets/images/Waves.mp4');
+    _chewieController = ChewieController(
+      videoPlayerController: _controller,
+      looping: true,
+      autoPlay: true,
+      allowMuting: true,
+      allowPlaybackSpeedChanging: false,
+      showControls: false,
+    );
+    _controller.setVolume(0);
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _chewieController.dispose();
+    super.dispose();
+  }
+
 
   Future<void> fetchWeather() async {
     try {
@@ -82,89 +105,96 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: horizontalPadding,
-                vertical: verticalPadding,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(
-                    'assets/images/menu.png',
-                    height: 45,
-                    color: Colors.grey[800],
-                  ),
-                  Icon(
-                    Icons.person,
-                    size: 45,
-                    color: Colors.grey[800],
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+      body: Stack(
+        children: [
+          Chewie(controller: _chewieController),
+          SafeArea(
+            child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Welcome!",
-                    style: TextStyle(fontSize: 20, color: Colors.grey.shade800),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: horizontalPadding,
+                      vertical: verticalPadding,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(
+                          'assets/images/menu.png',
+                          height: 45,
+                          color: Colors.grey[800],
+                        ),
+                        Icon(
+                          Icons.person,
+                          size: 45,
+                          color: Colors.grey[800],
+                        )
+                      ],
+                    ),
                   ),
-                  Text(
-                    'Trevin Joseph',
-                    style: GoogleFonts.bebasNeue(fontSize: 24),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Welcome!",
+                          style: TextStyle(fontSize: 20, color: Colors.grey.shade800),
+                        ),
+                        Text(
+                          'Trevin Joseph',
+                          style: GoogleFonts.bebasNeue(fontSize: 24),
+                        ),
+                      ],
+                    ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _locationController,
+                      decoration: InputDecoration(
+                        labelText: 'Enter Location',
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              location = _locationController.text;
+                              fetchWeather();
+                            });
+                          },
+                          icon: Icon(Icons.search),
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (weatherData.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: WeatherCard(
+                        temperature: weatherData['main']['temp'],
+                        weatherCondition: weatherData['weather'][0]['main'],
+                        windSpeed: weatherData['wind']['speed'],
+                      ),
+                    ),
+                  if (rainfall != null)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: WeatherSeverityCard(
+                        rainfall: rainfall!,
+                        weatherSeverityLevel: weatherSeverityLevel,
+                      ),
+                    )
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: _locationController,
-                decoration: InputDecoration(
-                  labelText: 'Enter Location',
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        location = _locationController.text;
-                        fetchWeather();
-                      });
-                    },
-                    icon: Icon(Icons.search),
-                  ),
-                ),
-              ),
-            ),
-            if (weatherData.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: WeatherCard(
-                  temperature: weatherData['main']['temp'],
-                  weatherCondition: weatherData['weather'][0]['main'],
-                  windSpeed: weatherData['wind']['speed'],
-                ),
-              ),
-            if (rainfall != null)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: WeatherSeverityCard(
-                  rainfall: rainfall!,
-                  weatherSeverityLevel: weatherSeverityLevel,
-                ),
-              )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
