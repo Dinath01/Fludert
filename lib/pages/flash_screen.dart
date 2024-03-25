@@ -1,7 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'login_page.dart'; 
+import 'login_page.dart';
 
 class FlashScreen extends StatelessWidget {
   @override
@@ -12,7 +12,7 @@ class FlashScreen extends StatelessWidget {
       nextScreen: LoginPage(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.leftToRight,
-      duration: 3000, 
+      duration: 3000,
     );
   }
 
@@ -20,10 +20,6 @@ class FlashScreen extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-
-
-
-        
         children: [
           Container(
             width: 100,
@@ -31,7 +27,7 @@ class FlashScreen extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage('assets/images/Logo.png'), 
+                image: AssetImage('assets/images/Logo.png'),
                 fit: BoxFit.cover,
               ),
             ),

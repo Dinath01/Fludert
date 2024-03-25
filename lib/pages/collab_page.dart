@@ -34,7 +34,10 @@ class CollaboratorsPage extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color.fromARGB(255, 116, 65, 210), Colors.deepPurple.shade200],
+            colors: [
+              Color.fromARGB(255, 116, 65, 210),
+              Colors.deepPurple.shade200
+            ],
           ),
         ),
         child: ListView(
@@ -67,30 +70,24 @@ class CollaboratorsPage extends StatelessWidget {
             ServiceCard(
               icon: Icons.local_hospital,
               title: 'Ambulance',
-               onPressed: () {
+              onPressed: () {
                 //action
-                  },
-              ),
+              },
+            ),
             ServiceCard(
               icon: Icons.phone,
               title: 'Calls',
-              onPressed: () {
-                
-              },
+              onPressed: () {},
             ),
-           ServiceCard(
+            ServiceCard(
               icon: Icons.monetization_on,
               title: 'Money',
-              onPressed: () {
-             
-            },
+              onPressed: () {},
             ),
             ServiceCard(
               icon: Icons.local_offer,
               title: 'Insurance',
-              onPressed: () {
-               
-              },
+              onPressed: () {},
             ),
           ],
         ),
@@ -167,16 +164,12 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () {
-                          
-                        },
+                        onPressed: () {},
                         icon: Icon(Icons.email),
                         label: Text('Email'),
                       ),
                       ElevatedButton.icon(
-                        onPressed: () {
-                        
-                        },
+                        onPressed: () {},
                         icon: Icon(Icons.phone),
                         label: Text('Call'),
                       ),
@@ -190,7 +183,6 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
     );
   }
 }
-
 
 class ServiceCard extends StatelessWidget {
   final IconData icon;

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -35,12 +36,15 @@ class _HomePageState extends State<HomePage> {
   double? rainfall = 0.0;
   String weatherSeverityLevel = '';
 
+  final double horizontalPadding = 40;
+  final double verticalPadding = 25;
+
   final TextEditingController _locationController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    location = 'Colombo'; // Default location
+    location = 'Colombo'; //default
     fetchWeather();
   }
 
@@ -51,10 +55,10 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         weatherData = data;
         rainfall = rainData['rain']['1h'];
-        if (rainfall != null){
-          if (rainfall! > 4.00){
+        if (rainfall != null) {
+          if (rainfall! > 4.00) {
             weatherSeverityLevel = "Severe";
-          } else if (rainfall! > 2.00){
+          } else if (rainfall! > 2.00) {
             weatherSeverityLevel = 'Mid';
           } else {
             weatherSeverityLevel = 'Safe';
@@ -66,8 +70,10 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Future<Map<String, dynamic>> fetchWeatherData(String city, String apiKey) async {
-    final response = await http.get(Uri.parse('http://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey'));
+  Future<Map<String, dynamic>> fetchWeatherData(
+      String city, String apiKey) async {
+    final response = await http.get(Uri.parse(
+        'http://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey'));
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -79,13 +85,49 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(location),
-      ),
-      body: SingleChildScrollView(
+      backgroundColor: Colors.white,
+      body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+                vertical: verticalPadding,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(
+                    'assets/images/menu.png',
+                    height: 45,
+                    color: Colors.grey[800],
+                  ),
+                  Icon(
+                    Icons.person,
+                    size: 45,
+                    color: Colors.grey[800],
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Welcome!",
+                    style: TextStyle(fontSize: 20, color: Colors.grey.shade800),
+                  ),
+                  Text(
+                    'Trevin Joseph',
+                    style: GoogleFonts.bebasNeue(fontSize: 24),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(

@@ -30,34 +30,35 @@ class ProfileScreen extends StatelessWidget {
             itemProfile('Address', 'Gampola Kandy', CupertinoIcons.location),
             const SizedBox(height: 10),
             itemProfile('Email', 'joindew@hotmail.com', CupertinoIcons.mail),
-
           ],
         ),
       ),
     );
   }
 
-  itemProfile(String title, String subtitle, IconData iconData){
+  itemProfile(String title, String subtitle, IconData iconData) {
     return Container(
       decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0,5),
-                    color: Colors.purple.withOpacity(.2),
-                    spreadRadius: 2,
-                    blurRadius: 10,
-                  )
-                ]
-              ),
-              child: ListTile(
-                title: Text(title),
-                subtitle: Text(subtitle),
-                leading: Icon(iconData),
-                trailing: Icon(Icons.arrow_forward, color: Colors.grey,),
-                tileColor: Colors.white,
-              ),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 5),
+              color: Colors.purple.withOpacity(.2),
+              spreadRadius: 2,
+              blurRadius: 10,
+            )
+          ]),
+      child: ListTile(
+        title: Text(title),
+        subtitle: Text(subtitle),
+        leading: Icon(iconData),
+        trailing: Icon(
+          Icons.arrow_forward,
+          color: Colors.grey,
+        ),
+        tileColor: Colors.white,
+      ),
     );
   }
 }
