@@ -20,6 +20,10 @@ class FlashScreen extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+
+
+
+        
         children: [
           Container(
             width: 100,

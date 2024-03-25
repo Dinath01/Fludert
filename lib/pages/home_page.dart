@@ -32,6 +32,8 @@ class _HomePageState extends State<HomePage> {
   late String location;
   final String apiKey = '552ea31084a4a82bf8ce26477f4dc33c';
   Map<String, dynamic> weatherData = {};
+  double? rainfall = 0.0;
+  String weatherSeverityLevel = '';
 
   final TextEditingController _locationController = TextEditingController();
 
@@ -45,8 +47,19 @@ class _HomePageState extends State<HomePage> {
   Future<void> fetchWeather() async {
     try {
       final data = await fetchWeatherData(location, apiKey);
+      final rainData = await fetchWeatherData(location, apiKey);
       setState(() {
         weatherData = data;
+        rainfall = rainData['rain']['1h'];
+        if (rainfall != null){
+          if (rainfall! > 4.00){
+            weatherSeverityLevel = "Severe";
+          } else if (rainfall! > 2.00){
+            weatherSeverityLevel = 'Mid';
+          } else {
+            weatherSeverityLevel = 'Safe';
+          }
+        }
       });
     } catch (e) {
       print('Error fetching weather data: $e');
@@ -100,6 +113,14 @@ class _HomePageState extends State<HomePage> {
                   windSpeed: weatherData['wind']['speed'],
                 ),
               ),
+            if (rainfall != null)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: WeatherSeverityCard(
+                  rainfall: rainfall!,
+                  weatherSeverityLevel: weatherSeverityLevel,
+                ),
+              )
           ],
         ),
       ),
@@ -165,6 +186,44 @@ class WeatherCard extends StatelessWidget {
             SizedBox(height: 8),
             Text(
               'Wind Speed: $windSpeed m/s',
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class WeatherSeverityCard extends StatelessWidget {
+  final double rainfall;
+  final String weatherSeverityLevel;
+
+  const WeatherSeverityCard({
+    required this.rainfall,
+    required this.weatherSeverityLevel,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Rainfall: $rainfall mm',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Weather Severity Level: $weatherSeverityLevel',
               style: TextStyle(fontSize: 18),
             ),
           ],
