@@ -60,7 +60,6 @@ class _HomePageState extends State<HomePage> {
       allowPlaybackSpeedChanging: false,
       showControls: false,
     );
-    _controller.setVolume(0);
   }
 
   @override
