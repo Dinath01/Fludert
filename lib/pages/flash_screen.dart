@@ -1,48 +1,39 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:fludert/pages/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'login_page.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:lottie/lottie.dart';
+import 'home_page.dart';
 
 class FlashScreen extends StatelessWidget {
+  const FlashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      backgroundColor: Colors.purple,
-      splash: _buildFlashLogo(),
-      nextScreen: LoginPage(),
-      splashTransition: SplashTransition.fadeTransition,
-      pageTransitionType: PageTransitionType.leftToRight,
-      duration: 3000,
-    );
-  }
-
-  Widget _buildFlashLogo() {
-    return Center(
-      child: Column(
+    return AnimatedSplashScreen(splash:
+      Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage('assets/images/Logo.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
-          Text(
-            'Fludert',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-        ],
-      ),
+          Center(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                LottieBuilder.asset("assets/Animation - 1711599032677.json"),
+                Text(
+                  'Fludert',
+                  style: TextStyle(
+                    fontSize: 44,
+                    fontFamily: 'Jura',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                )
+              ] 
+          )
+        )
+      ],
+      ), nextScreen: LoginPage(),
+      splashIconSize: 400,
+      backgroundColor: Color.fromRGBO(152, 35, 242, 1),
     );
   }
 }

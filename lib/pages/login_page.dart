@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
                 height: 400,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/background.png'),
+                        image: AssetImage('assets/images/bg.png'),
                         fit: BoxFit.fill)),
                 child: Stack(
                   children: <Widget>[
@@ -91,6 +91,7 @@ class LoginPage extends StatelessWidget {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
+                                    fontFamily: 'Jura',
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -136,7 +137,10 @@ class LoginPage extends StatelessWidget {
                                     border: InputBorder.none,
                                     hintText: "Username",
                                     hintStyle:
-                                        TextStyle(color: Colors.grey[700])),
+                                        TextStyle(
+                                          color: Colors.grey[700],
+                                          fontFamily: 'Jura',
+                                        )),
                               ),
                             ),
                             Container(
@@ -147,7 +151,7 @@ class LoginPage extends StatelessWidget {
                                     border: InputBorder.none,
                                     hintText: "Password",
                                     hintStyle:
-                                        TextStyle(color: Colors.grey[700])),
+                                        TextStyle(color: Colors.grey[700], fontFamily: 'Jura',)),
                               ),
                             )
                           ],
@@ -181,7 +185,9 @@ class LoginPage extends StatelessWidget {
                               "Sign Up",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Jura',
+                                  ),
                             ),
                           ),
                         ),
@@ -213,7 +219,7 @@ class LoginPage extends StatelessWidget {
                               "Guest Login",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.bold,fontFamily: 'Jura',),
                             ),
                           ),
                         ),
