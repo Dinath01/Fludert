@@ -60,6 +60,8 @@ class _HomePageState extends State<HomePage> {
       allowPlaybackSpeedChanging: false,
       showControls: false,
     );
+
+    _controller.setVolume(0.0);
   }
 
   @override
@@ -145,11 +147,11 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           "Welcome!",
-                          style: TextStyle(fontSize: 20, color: Colors.grey.shade800),
+                          style: TextStyle(fontSize: 20, color: Colors.grey.shade800,  ),
                         ),
                         Text(
                           'Trevin Joseph',
-                          style: GoogleFonts.bebasNeue(fontSize: 24),
+                          style: TextStyle(fontSize: 35, fontFamily: 'Humane')
                         ),
                       ],
                     ),

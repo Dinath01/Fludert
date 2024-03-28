@@ -16,61 +16,24 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+
+      body: Stack(
+        children: <Widget>[
+          Image.asset(
+            'assets/images/background.png',
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            fit:BoxFit.cover,
+            ),
+         
+      SingleChildScrollView(
         child: Container(
           child: Column(
             children: <Widget>[
               Container(
-                height: 400,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/bg.png'),
-                        fit: BoxFit.fill)),
+                height: 300,
                 child: Stack(
                   children: <Widget>[
-                    Positioned(
-                      left: 30,
-                      width: 80,
-                      height: 200,
-                      child: FadeInUp(
-                        duration: Duration(seconds: 1),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage('assets/images/Waves I.png'))),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 140,
-                      width: 80,
-                      height: 150,
-                      child: FadeInUp(
-                        duration: Duration(milliseconds: 1200),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/Waves II.png'))),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 40,
-                      top: 40,
-                      width: 80,
-                      height: 150,
-                      child: FadeInUp(
-                        duration: Duration(milliseconds: 1300),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage('assets/images/Hand I.png'))),
-                        ),
-                      ),
-                    ),
                     Positioned(
                       child: FadeInUp(
                         duration: Duration(milliseconds: 1600),
@@ -85,14 +48,15 @@ class LoginPage extends StatelessWidget {
                                   width: 150,
                                   height: 150,
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 30),
                                 Text(
-                                  "Welcome to Fludert",
+                                  "FLUDERT",
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Color.fromRGBO(143, 148, 251, 1),
                                     fontSize: 20,
-                                    fontFamily: 'Jura',
+                                    fontFamily: 'Medium',
                                     fontWeight: FontWeight.bold,
+                                    shadows: [Shadow(blurRadius:5.0, color: Colors.black.withOpacity(0.8), offset: Offset(3.0, 3.0),)]
                                   ),
                                 ),
                               ],
@@ -139,7 +103,7 @@ class LoginPage extends StatelessWidget {
                                     hintStyle:
                                         TextStyle(
                                           color: Colors.grey[700],
-                                          fontFamily: 'Jura',
+                                          fontFamily: 'Medium',
                                         )),
                               ),
                             ),
@@ -151,7 +115,7 @@ class LoginPage extends StatelessWidget {
                                     border: InputBorder.none,
                                     hintText: "Password",
                                     hintStyle:
-                                        TextStyle(color: Colors.grey[700], fontFamily: 'Jura',)),
+                                        TextStyle(color: Colors.grey[700], fontFamily: 'Medium',)),
                               ),
                             )
                           ],
@@ -186,7 +150,7 @@ class LoginPage extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'Jura',
+                                  fontFamily: 'Medium',
                                   ),
                             ),
                           ),
@@ -219,7 +183,7 @@ class LoginPage extends StatelessWidget {
                               "Guest Login",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,fontFamily: 'Jura',),
+                                  fontWeight: FontWeight.bold,fontFamily: 'Medium',),
                             ),
                           ),
                         ),
@@ -230,7 +194,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     FadeInUp(
                       duration: Duration(milliseconds: 2200),
-                      child: buildButton("Login"),
+                      child: buildButton("Login",),
                     ),
                     SizedBox(
                       height: 70,
@@ -239,7 +203,9 @@ class LoginPage extends StatelessWidget {
                       duration: Duration(milliseconds: 2300),
                       child: Text("Forgot Password?",
                           style: TextStyle(
-                              color: Color.fromRGBO(143, 148, 251, 1))),
+                              color: Color.fromRGBO(143, 148, 251, 1),
+                              fontFamily: 'Medium'
+                              )),
                     ),
                   ],
                 ),
@@ -248,7 +214,7 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ]));
   }
 
   Widget buildButton(String text) {
@@ -264,7 +230,11 @@ class LoginPage extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.white, 
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Medium',
+          ),
         ),
       ),
     );

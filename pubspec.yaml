@@ -98,6 +98,21 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+     - family: Medium
+       fonts:
+         - asset: assets/Medium.otf
+     - family: Humane
+       fonts:
+         - asset: assets/Humane-Black.otf
+     - family: Kreese
+       fonts:
+         - asset: assets/Krease-Display.otf
+     - family: nova
+       fonts:
+         - asset: assets/novaklasse-semibdoblique.otf  
+     - family: Lepo
+       fonts:
+         - asset: assets/Leporid.ttf
      - family: Jura
        fonts:
          - asset: assets/Jura-VariableFont_wght.ttf
