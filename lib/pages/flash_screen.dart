@@ -21,10 +21,11 @@ class FlashScreen extends StatelessWidget {
                 Text(
                   'Fludert',
                   style: TextStyle(
-                    fontSize: 44,
-                    fontFamily: 'Jura',
+                    fontSize: 66,
+                    fontFamily: 'Humane',
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.white,
+                    letterSpacing: 3.0,
                   ),
                 )
               ] 
