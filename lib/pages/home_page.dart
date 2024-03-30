@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:video_player/video_player.dart';
-import 'package:chewie/chewie.dart';
 import 'package:geolocator/geolocator.dart';
 
 void main() {
@@ -34,7 +32,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Position _currentPosition;
-  late String location;
+  late String location = '6.927079, 79.861244'; // Default location
   final String apiKey = '552ea31084a4a82bf8ce26477f4dc33c';
   Map<String, dynamic> weatherData = {};
   double? rainfall = 0.0;
@@ -43,79 +41,48 @@ class _HomePageState extends State<HomePage> {
   final double horizontalPadding = 40;
   final double verticalPadding = 25;
 
-  final TextEditingController _locationController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    _currentPosition = Position(longitude: 6.927079, latitude: 79.861244, timestamp: DateTime.now(), accuracy: 1, altitude: 0.0, altitudeAccuracy: 0.0, heading: 0.0, headingAccuracy: 1, speed: 0.0, speedAccuracy: 0.0);
+    _getCurrentLocation();
+  }
 
-//  late VideoPlayerController _controller;
-//  late ChewieController _chewieController;
+  void _getCurrentLocation() async {
+    try {
+      bool isServiceEnabled;
+      LocationPermission permission;
 
-//  @override
-//  void initState() {
-//    super.initState();
-//    location = 'Colombo'; //default
-//    fetchWeather();
-//    _controller = VideoPlayerController.asset('assets/images/Waves.mp4');
-//    _chewieController = ChewieController(
-//      videoPlayerController: _controller,
-//      looping: true,
-//      autoPlay: true,
-//      allowMuting: true,
-//      allowPlaybackSpeedChanging: false,
-//      showControls: false,
-//    );
-
-//    _controller.setVolume(0.0);
-//  }
-
-//  @override
-//  void dispose() {
-//    _controller.dispose();
-//    _chewieController.dispose();
-//    super.dispose();
-//  }
-
-@override
-void initState() {
-  super.initState();
-  _getCurrentLocation();
-}
-
-void _getCurrentLocation() async {
-  try {
-    bool isServiceEnabled;
-    LocationPermission permission;
-
-    isServiceEnabled = await GeolocatorPlatform.instance.isLocationServiceEnabled();
-    if (!isServiceEnabled) {
-      return;
-    }
-
-    permission = await GeolocatorPlatform.instance.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await GeolocatorPlatform.instance.requestPermission();
-      if (permission == LocationPermission.denied) {
+      isServiceEnabled = await GeolocatorPlatform.instance.isLocationServiceEnabled();
+      if (!isServiceEnabled) {
         return;
       }
+
+      permission = await GeolocatorPlatform.instance.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await GeolocatorPlatform.instance.requestPermission();
+        if (permission == LocationPermission.denied) {
+          return;
+        }
+      }
+
+      _currentPosition = await GeolocatorPlatform.instance.getCurrentPosition();
+
+      setState(() {
+        location = '${_currentPosition.latitude},${_currentPosition.longitude}';
+        fetchWeather();
+      });
+    } catch (e) {
+      print('Error getting current position : $e');
     }
-
-    _currentPosition = await GeolocatorPlatform.instance.getCurrentPosition();
-
-    setState(() {
-      location = '${_currentPosition.latitude},${_currentPosition.longitude}';
-      fetchWeather();
-    });
-  } catch (e) {
-    print('Error getting current position : $e');
   }
-}
-
 
   Future<void> fetchWeather() async {
     try {
       final data = await fetchWeatherData(location, apiKey);
-      final rainData = await fetchWeatherData(location, apiKey);
       setState(() {
         weatherData = data;
-        rainfall = rainData['rain']['1h'];
+        rainfall = weatherData['rain'] != null ? weatherData['rain']['1h'] : 0.0;
         if (rainfall != null) {
           if (rainfall! > 4.00) {
             weatherSeverityLevel = "Severe";
@@ -143,13 +110,11 @@ void _getCurrentLocation() async {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          //Chewie(controller: _chewieController),
           SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -184,31 +149,13 @@ void _getCurrentLocation() async {
                       children: [
                         Text(
                           "Welcome!",
-                          style: TextStyle(fontSize: 20, color: Colors.grey.shade800,  ),
+                          style: TextStyle(fontSize: 20, color: Colors.grey.shade800,),
                         ),
                         Text(
-                          'Trevin Joseph',
-                          style: TextStyle(fontSize: 35, fontFamily: 'Humane')
+                            'Trevin Joseph',
+                            style: TextStyle(fontSize: 35, fontFamily: 'Humane')
                         ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      controller: _locationController,
-                      decoration: InputDecoration(
-                        labelText: 'Enter Location',
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              location = _locationController.text;
-                              fetchWeather();
-                            });
-                          },
-                          icon: Icon(Icons.search),
-                        ),
-                      ),
                     ),
                   ),
                   if (weatherData.isNotEmpty)
@@ -269,67 +216,67 @@ class WeatherCard extends StatelessWidget {
     }
   }
 
-@override
-Widget build(BuildContext context) {
-  return Card(
-    elevation: 4,
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 Image.asset(
-                'assets/images/temperature.png',
-                width: 32,
-                height: 32,
-              ),
-              SizedBox(width: 8),
-              Text(
-                'Temperature: $temperature °C',
-                style: TextStyle(fontSize: 18),
-              ),
-            ],
-          ),
-          SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                getIconForWeatherCondition(weatherCondition),
-                width: 32,
-                height: 32,
-              ),
-              SizedBox(width: 8),
-              Text(
-                'Weather: $weatherCondition',
-                style: TextStyle(fontSize: 18),
-              ),
-            ],
-          ),
-          SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/windspeed.png',
-                width: 32,
-                height: 32,
-              ),
-              SizedBox(width: 8),
-              Text(
-                'Wind Speed: $windSpeed m/s',
-                style: TextStyle(fontSize: 18),
-              ),
-            ],
-          ),
-        ],
+                  'assets/images/temperature.png',
+                  width: 32,
+                  height: 32,
+                ),
+                SizedBox(width: 8),
+                Text(
+                  'Temperature: $temperature °C',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  getIconForWeatherCondition(weatherCondition),
+                  width: 32,
+                  height: 32,
+                ),
+                SizedBox(width: 8),
+                Text(
+                  'Weather: $weatherCondition',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/windspeed.png',
+                  width: 32,
+                  height: 32,
+                ),
+                SizedBox(width: 8),
+                Text(
+                  'Wind Speed: $windSpeed m/s',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }
 
 class WeatherSeverityCard extends StatelessWidget {

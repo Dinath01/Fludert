@@ -1,6 +1,7 @@
 import 'package:fludert/assets/signup_screen.dart';
 import 'package:fludert/pages/home_page.dart';
 import 'package:fludert/assets/navbar.dart';
+import 'package:fludert/pages/home_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 
@@ -245,7 +246,7 @@ class NavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext contex) {
     return Scaffold(
-      body: Navbar(body: HomePage()),
+      body: Navbar(body: HomePage2()),
     );
   }
 }

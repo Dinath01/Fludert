@@ -24,7 +24,7 @@ class FlashScreen extends StatelessWidget {
                     fontSize: 66,
                     fontFamily: 'Humane',
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 67, 213, 236),
                     letterSpacing: 3.0,
                   ),
                 )
@@ -34,7 +34,7 @@ class FlashScreen extends StatelessWidget {
       ],
       ), nextScreen: LoginPage(),
       splashIconSize: 400,
-      backgroundColor: Color.fromRGBO(152, 35, 242, 1),
+      backgroundColor: Color.fromARGB(255, 67, 213, 236),
     );
   }
 }
