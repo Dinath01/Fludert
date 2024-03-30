@@ -14,15 +14,15 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage2> {
-  
   final String apiKey = '552ea31084a4a82bf8ce26477f4dc33c';
-
 
   int temperature = 0;
   int maxTemp = 0;
   String weatherStateName = 'Loading..';
   int humidity = 0;
   int windSpeed = 0;
+  double rainfall = 0.0;
+  String rainfallSeverity = 'Loading..';
 
   var currentDate = 'Loading..';
   String imageUrl = '';
@@ -60,7 +60,6 @@ class _HomePageState extends State<HomePage2> {
     }
   }
 
-
   Future<void> _fetchWeatherData(double latitude, double longitude) async {
     var url = Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric');
@@ -69,18 +68,29 @@ class _HomePageState extends State<HomePage2> {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       setState(() {
-        location = result['name']; 
+        location = result['name'];
         temperature = result['main']['temp'].round();
         weatherStateName = result['weather'][0]['main'];
         humidity = result['main']['humidity'];
         windSpeed = result['wind']['speed'].round();
         maxTemp = result['main']['temp_max'].round();
+        rainfall =
+            result.containsKey('rain') ? result['rain']['1h'] ?? 0.0 : 0.0;
 
         var timestamp = result['dt'];
         var dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
         currentDate = DateFormat('EEEE, d MMMM').format(dateTime);
 
         imageUrl = _getWeatherImageUrl(weatherStateName);
+
+        if (rainfall >= 5.0) {
+          rainfallSeverity = 'Severe';
+        } else if (rainfall >= 3.0) {
+          rainfallSeverity = 'Mid';
+        } else {
+          rainfallSeverity = 'Light';
+        }
+
         isLoading = false;
       });
     } else {
@@ -90,7 +100,6 @@ class _HomePageState extends State<HomePage2> {
       });
     }
   }
-
 
   String _getWeatherImageUrl(String weatherState) {
     switch (weatherState) {
@@ -103,7 +112,7 @@ class _HomePageState extends State<HomePage2> {
       case 'Snow':
         return 'assets/images/snow.png';
       default:
-        return 'assets/images/default.png'; 
+        return 'assets/images/default.png';
     }
   }
 
@@ -113,6 +122,12 @@ class _HomePageState extends State<HomePage2> {
 
     return Scaffold(
         body: Stack(children: [
+      Image.asset(
+        'assets/images/hpbg.png',
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        fit: BoxFit.cover,
+      ),
       SafeArea(
           child: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -145,19 +160,26 @@ class _HomePageState extends State<HomePage2> {
               children: [
                 Text(
                   'Welcome!',
-                  style: TextStyle(fontSize: 20, color: Colors.grey.shade800),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Jura',
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 44, 44, 44),
+                      shadows: [Shadow(blurRadius:9.0, color: Color.fromARGB(255, 49, 117, 212).withOpacity(1), offset: Offset(1.0, 1.0),)]
+                      ),
                 ),
                 Text(
                   "Trevin Joseph",
                   style: TextStyle(fontSize: 35, fontFamily: "Humane"),
                 ),
-                                Row(
+                Row(
                   children: [
                     Text(
                       location,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0,
+                        fontFamily: 'Jura',
                       ),
                     ),
                     Text(
@@ -165,6 +187,7 @@ class _HomePageState extends State<HomePage2> {
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16.0,
+                        fontFamily: 'Jura',
                       ),
                     ),
                     Text(
@@ -172,13 +195,12 @@ class _HomePageState extends State<HomePage2> {
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16.0,
+                        fontFamily: 'Jura',
                       ),
                     ),
                   ],
                 ),
-                isLoading
-                    ? _buildShimmerLoading() 
-                    : _buildWeatherInfo(size), 
+                isLoading ? _buildShimmerLoading() : _buildWeatherInfo(size),
               ],
             ),
           ),
@@ -187,20 +209,18 @@ class _HomePageState extends State<HomePage2> {
     ]));
   }
 
-
   Widget _buildShimmerLoading() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildShimmerText(150), 
+        _buildShimmerText(150),
         const SizedBox(height: 5),
-        _buildShimmerText(100), 
+        _buildShimmerText(100),
         const SizedBox(height: 20),
-        _buildShimmerWeatherInfo(), 
+        _buildShimmerWeatherInfo(),
       ],
     );
   }
-
 
   Widget _buildShimmerText(double width) {
     return Shimmer.fromColors(
@@ -213,7 +233,6 @@ class _HomePageState extends State<HomePage2> {
       ),
     );
   }
-
 
   Widget _buildShimmerWeatherInfo() {
     return Shimmer.fromColors(
@@ -230,11 +249,10 @@ class _HomePageState extends State<HomePage2> {
     );
   }
 
-
   Widget _buildWeatherInfo(Size size) {
     return Container(
       width: size.width,
-      height: 200,
+      height: 250, 
       decoration: BoxDecoration(
         color: Colors.blue,
         borderRadius: BorderRadius.circular(15),
@@ -248,27 +266,29 @@ class _HomePageState extends State<HomePage2> {
               '$temperature°C',
               style: const TextStyle(
                 fontSize: 40,
+                fontFamily: "Jura",
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
           ),
           Positioned(
-            top: 80,
-            left: 20,
+            top: 60,
+            left: 10,
             child: Image.asset(
               imageUrl,
-              width: 70,
-              height: 70,
+              width: 130,
+              height: 130,
             ),
           ),
           Positioned(
-            bottom: 20,
-            left: 20,
+            top: 180,
+            left: 30,
             child: Text(
               weatherStateName,
               style: const TextStyle(
                 fontSize: 20,
+                fontFamily: "Jura",
                 color: Colors.white,
               ),
             ),
@@ -283,6 +303,7 @@ class _HomePageState extends State<HomePage2> {
                   'Humidity: $humidity%',
                   style: const TextStyle(
                     fontSize: 16,
+                    fontFamily: "Jura",
                     color: Colors.white,
                   ),
                 ),
@@ -290,12 +311,35 @@ class _HomePageState extends State<HomePage2> {
                   'Wind Speed: $windSpeed km/h',
                   style: const TextStyle(
                     fontSize: 16,
+                    fontFamily: "Jura",
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Flood Severity: $rainfallSeverity',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Jura",
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
               ],
             ),
           ),
+          Positioned(
+              top: 115,
+              right: 55,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/Light.png',
+                    width: 90,
+                    height: 90,
+                  ),
+                ],
+              ))
         ],
       ),
     );

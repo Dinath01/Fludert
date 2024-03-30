@@ -22,10 +22,10 @@ class FlashScreen extends StatelessWidget {
                   'Fludert',
                   style: TextStyle(
                     fontSize: 66,
-                    fontFamily: 'Humane',
+                    fontFamily: 'Kreese',
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 67, 213, 236),
-                    letterSpacing: 3.0,
+                    color: Color.fromARGB(255, 1, 62, 72),
+                    letterSpacing: 5.0,
                   ),
                 )
               ] 
