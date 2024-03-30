@@ -2,7 +2,6 @@ import 'package:fludert/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:lottie/lottie.dart';
-import 'home_page.dart';
 
 class FlashScreen extends StatelessWidget {
   const FlashScreen({super.key});

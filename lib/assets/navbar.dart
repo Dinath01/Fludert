@@ -22,9 +22,9 @@ class _NavbarState extends State<Navbar> {
   final screens = [
     HomePage2(),
     CollaboratorsPage(),
-    ProfileScreen(),
-    SettingsPage(),
+    AccountScreen(),
     AboutUsPage(),
+
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,6 @@ class _NavbarState extends State<Navbar> {
       ),
       Icon(
         Icons.add_alert,
-      ),
-      Icon(
-        Icons.person,
       ),
       Icon(
         Icons.settings,

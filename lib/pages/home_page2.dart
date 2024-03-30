@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:fludert/pages/edit_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -144,10 +146,18 @@ class _HomePageState extends State<HomePage2> {
                   height: 45,
                   color: Colors.grey[800],
                 ),
-                Icon(
-                  Icons.person,
-                  size: 45,
-                  color: Colors.grey[800],
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EditAccountScreen()),
+                        );
+                      },
+                  child: Icon(
+                    Icons.person,
+                    size: 45,
+                    color: Colors.grey[800],
+                  ),
                 )
               ],
             ),
