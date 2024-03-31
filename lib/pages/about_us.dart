@@ -5,7 +5,14 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flood Force'),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.arrow_back),
+        ),
+        title: Text(
+          "About Us",
+          style: TextStyle(fontFamily: 'Medium'),
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -15,25 +22,25 @@ class AboutUsPage extends StatelessWidget {
             children: [
               Text(
                 'Our Mission: Empowering Communities\nTo Get Through Flood Disasters',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,fontFamily: "Jura"),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
               Text(
                 'We created Fludert because we understand the devastating impact floods can have on communities. Lives are disrupted, homes are damaged, and precious belongings are lost. We believe everyone deserves to feel safe and prepared when facing flood risks.',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16,fontFamily: "Jura"),
                 textAlign: TextAlign.justify,
               ),
               SizedBox(height: 20),
               Text(
                 'The Fludert app provides real-time flood alerts, empowering you to take proactive measures to protect yourself and your loved ones.',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16,fontFamily: "Jura"),
                 textAlign: TextAlign.justify,
               ),
               SizedBox(height: 20),
               Text(
                 'Meet the Flood Force Team:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,fontFamily: "Jura"),
               ),
               SizedBox(height: 10),
               Row(

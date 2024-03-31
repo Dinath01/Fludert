@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Collaborators',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.blue,
       ),
       home: const CollaboratorsPage(),
     );
@@ -46,6 +46,7 @@ class CollaboratorsPage extends StatelessWidget {
               name: 'Leo Club',
               description:
                   'Leo Club is a community that whatever blah blah blah.',
+                  
             ),
             CollaboratorCard(
               name: 'SLRCS',
