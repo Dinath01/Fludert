@@ -1,25 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Collaborators',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const CollaboratorsPage(),
-    );
-  }
-}
-
 class CollaboratorsPage extends StatelessWidget {
   const CollaboratorsPage({Key? key}) : super(key: key);
 
@@ -27,7 +8,14 @@ class CollaboratorsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Collaborators'),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.arrow_back),
+        ),
+        title: Text(
+          "Collaborators",
+          style: TextStyle(fontFamily: 'Medium'),
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -35,8 +23,8 @@ class CollaboratorsPage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromARGB(255, 116, 65, 210),
-              Colors.deepPurple.shade200
+              Color.fromARGB(255, 65, 101, 210),
+              Color.fromARGB(255, 81, 148, 230)
             ],
           ),
         ),
@@ -46,7 +34,6 @@ class CollaboratorsPage extends StatelessWidget {
               name: 'Leo Club',
               description:
                   'Leo Club is a community that whatever blah blah blah.',
-                  
             ),
             CollaboratorCard(
               name: 'SLRCS',
@@ -68,27 +55,39 @@ class CollaboratorsPage extends StatelessWidget {
               description:
                   'The Disaster Management Center (DMC) of Sri Lanka stands as the apex governmental body dedicated to coordinating and executing comprehensive disaster preparedness, response, and recovery initiatives across the nation. Established to address the growing challenges posed by natural and man-made calamities, the DMC operates under the purview of the Ministry of Disaster Management. With its strategic framework grounded in risk reduction, mitigation, and swift response mechanisms, the DMC plays a pivotal role in safeguarding lives, infrastructure, and livelihoods, thereby fostering resilience and sustainable development throughout Sri Lanka.',
             ),
-            ServiceCard(
-              icon: Icons.local_hospital,
-              title: 'Ambulance',
-              onPressed: () {
-                //action
-              },
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ServiceCard(
+                  icon: Icons.local_hospital,
+                  title: 'Ambulance',
+                  onPressed: () {
+                    //action
+                  },
+                ),
+                ServiceCard(
+                  icon: Icons.phone,
+                  title: 'Calls',
+                  onPressed: () {},
+                ),
+              ],
             ),
-            ServiceCard(
-              icon: Icons.phone,
-              title: 'Calls',
-              onPressed: () {},
-            ),
-            ServiceCard(
-              icon: Icons.monetization_on,
-              title: 'Money',
-              onPressed: () {},
-            ),
-            ServiceCard(
-              icon: Icons.local_offer,
-              title: 'Insurance',
-              onPressed: () {},
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ServiceCard(
+                  icon: Icons.monetization_on,
+                  title: 'Money',
+                  onPressed: () {},
+                ),
+                ServiceCard(
+                  icon: Icons.local_offer,
+                  title: 'Insurance',
+                  onPressed: () {},
+                ),
+              ],
             ),
           ],
         ),
@@ -96,6 +95,7 @@ class CollaboratorsPage extends StatelessWidget {
     );
   }
 }
+
 
 class CollaboratorCard extends StatefulWidget {
   final String name;
@@ -113,6 +113,9 @@ class CollaboratorCard extends StatefulWidget {
 
 class _CollaboratorCardState extends State<CollaboratorCard> {
   bool _expanded = false;
+
+  final double horizontalPadding = 40;
+  final double verticalPadding = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +142,7 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Jura',
               ),
             ),
             trailing: IconButton(
@@ -158,7 +162,7 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
                 children: [
                   Text(
                     widget.description,
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16, fontFamily: 'Jura'),
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -167,12 +171,16 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
                       ElevatedButton.icon(
                         onPressed: () {},
                         icon: Icon(Icons.email),
-                        label: Text('Email'),
+                        label: Text(
+                          'Email',
+                          style: TextStyle(fontFamily: 'Medium'),
+                        ),
                       ),
                       ElevatedButton.icon(
                         onPressed: () {},
                         icon: Icon(Icons.phone),
-                        label: Text('Call'),
+                        label: Text('Call',
+                            style: TextStyle(fontFamily: 'Medium')),
                       ),
                     ],
                   ),
@@ -190,6 +198,9 @@ class ServiceCard extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
 
+  final double horizontalPadding = 40;
+  final double verticalPadding = 25;
+
   const ServiceCard({
     Key? key,
     required this.icon,
@@ -199,32 +210,40 @@ class ServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.deepPurple.shade200,
-        padding: const EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+    return SizedBox(
+      width: 130,
+      height: 130,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          //fixedSize: Size(20,50),
+          backgroundColor: Color.fromARGB(255, 0, 166, 255),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(32),
+          ),
         ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: 48,
-            color: Colors.white,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 48,
               color: Colors.white,
+              shadows: [Shadow(blurRadius:9.0, color: Color.fromARGB(255, 0, 0, 0).withOpacity(1), offset: Offset(1.0, 1.0),)],
             ),
-          ),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontFamily: 'Jura',
+                shadows: [Shadow(blurRadius:9.0, color: Color.fromARGB(255, 0, 0, 0).withOpacity(1), offset: Offset(1.0, 1.0),)]
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
