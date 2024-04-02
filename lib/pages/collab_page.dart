@@ -1,5 +1,7 @@
 import 'dart:math';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:rive/rive.dart';
 
 class CollaboratorsPage extends StatelessWidget {
   const CollaboratorsPage({Key? key}) : super(key: key);
@@ -17,18 +19,31 @@ class CollaboratorsPage extends StatelessWidget {
           style: TextStyle(fontFamily: 'Medium'),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 65, 101, 210),
-              Color.fromARGB(255, 81, 148, 230)
-            ],
+      body: Stack(children: [
+        Positioned(
+          width: MediaQuery.of(context).size.width * 1.7,
+          left: 100,
+          bottom: 100,
+          child: Image.asset(
+            "assets/images/Spline.png",
           ),
         ),
-        child: ListView(
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+            child: const SizedBox(),
+          ),
+        ),
+        const RiveAnimation.asset(
+          "assets/images/shapes.riv",
+        ),
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+            child: const SizedBox(),
+          ),
+        ),
+        ListView(
           children: [
             CollaboratorCard(
               name: 'Leo Club',
@@ -91,11 +106,10 @@ class CollaboratorsPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      ]),
     );
   }
 }
-
 
 class CollaboratorCard extends StatefulWidget {
   final String name;
@@ -123,7 +137,7 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
       duration: const Duration(milliseconds: 300),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.deepPurple.shade200,
         borderRadius: BorderRadius.circular(12),
         boxShadow: const [
           BoxShadow(
@@ -139,10 +153,18 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
           ListTile(
             title: Text(
               widget.name,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'Jura',
+                fontFamily: 'Medium',
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    blurRadius: 9.0,
+                    color: Color.fromARGB(255, 0, 0, 0).withOpacity(1),
+                    offset: Offset(1.0, 1.0),
+                  )
+                ],
               ),
             ),
             trailing: IconButton(
@@ -211,13 +233,13 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 130,
+      width: 160,
       height: 130,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           //fixedSize: Size(20,50),
-          backgroundColor: Color.fromARGB(255, 0, 166, 255),
+          backgroundColor: Colors.deepPurple.shade200,
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),
@@ -230,17 +252,28 @@ class ServiceCard extends StatelessWidget {
               icon,
               size: 48,
               color: Colors.white,
-              shadows: [Shadow(blurRadius:9.0, color: Color.fromARGB(255, 0, 0, 0).withOpacity(1), offset: Offset(1.0, 1.0),)],
+              shadows: [
+                Shadow(
+                  blurRadius: 9.0,
+                  color: Color.fromARGB(255, 0, 0, 0).withOpacity(1),
+                  offset: Offset(1.0, 1.0),
+                )
+              ],
             ),
             const SizedBox(height: 8),
             Text(
               title,
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontFamily: 'Jura',
-                shadows: [Shadow(blurRadius:9.0, color: Color.fromARGB(255, 0, 0, 0).withOpacity(1), offset: Offset(1.0, 1.0),)]
-              ),
+                  fontSize: 13,
+                  color: Colors.white,
+                  fontFamily: 'Medium',
+                  shadows: [
+                    Shadow(
+                      blurRadius: 9.0,
+                      color: Color.fromARGB(255, 0, 0, 0).withOpacity(1),
+                      offset: Offset(1.0, 1.0),
+                    )
+                  ]),
             ),
           ],
         ),

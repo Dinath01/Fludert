@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:fludert/pages/edit_screen.dart';
 import 'package:fludert/assets/forward_button.dart';
 import 'package:fludert/assets/setting_item.dart';
 import 'package:fludert/assets/setting_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:rive/rive.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -25,13 +28,30 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
         leadingWidth: 80,
       ),
-      body:Stack(children: <Widget>[
-          Image.asset(
-            'assets/images/settings.png',
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
+      body: Stack(children: [
+        Positioned(
+          width: MediaQuery.of(context).size.width * 1.7,
+          left: 100,
+          bottom: 100,
+          child: Image.asset(
+            "assets/images/Spline.png",
           ),
+        ),
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+            child: const SizedBox(),
+          ),
+        ),
+        const RiveAnimation.asset(
+          "assets/images/shapes.riv",
+        ),
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+            child: const SizedBox(),
+          ),
+        ),
         SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(30),

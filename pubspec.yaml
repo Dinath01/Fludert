@@ -47,6 +47,8 @@ dependencies:
   video_player: ^2.2.14
   shimmer: ^3.0.0
   ionicons: ^0.2.2
+  rive: ^0.13.1
+  flare_flutter: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +90,7 @@ flutter:
      - assets/images/
      - assets/images/menu.png
      - assets/
+     
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

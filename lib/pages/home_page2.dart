@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:fludert/pages/edit_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:rive/rive.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -123,13 +125,31 @@ class _HomePageState extends State<HomePage2> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        body: Stack(children: [
-      Image.asset(
-        'assets/images/hpbg.png',
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        fit: BoxFit.cover,
-      ),
+        body: Stack(
+        children: [
+          Positioned(
+            width: MediaQuery.of(context).size.width * 1.7,
+            left: 100,
+            bottom: 100,
+            child: Image.asset(
+              "assets/images/Spline.png",
+            ),
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: const SizedBox(),
+            ),
+          ),
+          const RiveAnimation.asset(
+            "assets/images/shapes.riv",
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: const SizedBox(),
+            ),
+          ),
       SafeArea(
           child: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -147,12 +167,13 @@ class _HomePageState extends State<HomePage2> {
                   color: Colors.grey[800],
                 ),
                 GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EditAccountScreen()),
-                        );
-                      },
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditAccountScreen()),
+                    );
+                  },
                   child: Icon(
                     Icons.person,
                     size: 45,
@@ -175,8 +196,14 @@ class _HomePageState extends State<HomePage2> {
                       fontFamily: 'Jura',
                       fontWeight: FontWeight.bold,
                       color: const Color.fromARGB(255, 44, 44, 44),
-                      shadows: [Shadow(blurRadius:9.0, color: Color.fromARGB(255, 49, 117, 212).withOpacity(1), offset: Offset(1.0, 1.0),)]
-                      ),
+                      shadows: [
+                        Shadow(
+                          blurRadius: 9.0,
+                          color:
+                              Color.fromARGB(255, 49, 117, 212).withOpacity(1),
+                          offset: Offset(1.0, 1.0),
+                        )
+                      ]),
                 ),
                 Text(
                   "Trevin Joseph",
@@ -262,7 +289,7 @@ class _HomePageState extends State<HomePage2> {
   Widget _buildWeatherInfo(Size size) {
     return Container(
       width: size.width,
-      height: 250, 
+      height: 250,
       decoration: BoxDecoration(
         color: Colors.blue,
         borderRadius: BorderRadius.circular(15),

@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:fludert/pages/home_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:rive/rive.dart';
 
 class SignUpData {
   String fullName;
@@ -94,12 +97,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
       body: Stack(
-        children: <Widget>[
-          Image.asset(
-            'assets/images/background.png',
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
+        children: [
+          Positioned(
+            width: MediaQuery.of(context).size.width * 1.7,
+            left: 100,
+            bottom: 100,
+            child: Image.asset(
+              "assets/images/Spline.png",
+            ),
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: const SizedBox(),
+            ),
+          ),
+          const RiveAnimation.asset(
+            "assets/images/shapes.riv",
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: const SizedBox(),
+            ),
           ),
           SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
