@@ -1,9 +1,11 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:fludert/assets/signup_screen.dart';
 import 'package:fludert/pages/home_page.dart';
 import 'package:fludert/assets/navbar.dart';
 import 'package:fludert/pages/home_page2.dart';
-import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(
       MaterialApp(
@@ -13,11 +15,17 @@ void main() => runApp(
     );
 
 class LoginPage extends StatelessWidget {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final String baseUrl = 'https://localhost:3333'; // Replace
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(children: <Widget>[
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: <Widget>[
           Image.asset(
             'assets/images/background.png',
             width: MediaQuery.of(context).size.width,
@@ -102,6 +110,7 @@ class LoginPage extends StatelessWidget {
                                               color: Color.fromRGBO(
                                                   143, 148, 251, 1)))),
                                   child: TextField(
+                                    controller: _usernameController,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Username",
@@ -114,6 +123,7 @@ class LoginPage extends StatelessWidget {
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextField(
+                                    controller: _passwordController,
                                     obscureText: true,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
@@ -143,22 +153,22 @@ class LoginPage extends StatelessWidget {
                                 ])),
                             child: InkWell(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SignUpScreen(),
-                                  ),
-                                );
+                                _login(context);
                               },
                               child: Center(
                                 child: Text(
-                                  "Sign Up",
+                                  "Login",
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Medium',
-                                    shadows: [Shadow(blurRadius:5.0, color: Colors.black.withOpacity(0.8), offset: Offset(3.0, 3.0),)]
-                                  ),
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Medium',
+                                      shadows: [
+                                        Shadow(
+                                          blurRadius: 5.0,
+                                          color: Colors.black.withOpacity(0.8),
+                                          offset: Offset(3.0, 3.0),
+                                        )
+                                      ]),
                                 ),
                               ),
                             ),
@@ -182,18 +192,24 @@ class LoginPage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => NavigationPage()),
+                                    builder: (context) => NavigationPage(),
+                                  ),
                                 );
                               },
                               child: Center(
                                 child: Text(
                                   "Guest Login",
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Medium',
-                                    shadows: [Shadow(blurRadius:5.0, color: Colors.black.withOpacity(0.8), offset: Offset(3.0, 3.0),)]
-                                  ),
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Medium',
+                                      shadows: [
+                                        Shadow(
+                                          blurRadius: 5.0,
+                                          color: Colors.black.withOpacity(0.8),
+                                          offset: Offset(3.0, 3.0),
+                                        )
+                                      ]),
                                 ),
                               ),
                             ),
@@ -203,10 +219,41 @@ class LoginPage extends StatelessWidget {
                           height: 20,
                         ),
                         FadeInUp(
-                          duration: Duration(milliseconds: 2200),
-                          child: buildButton(
-                            "Login",
-                            
+                          duration: Duration(milliseconds: 1900),
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: LinearGradient(colors: [
+                                  Color.fromRGBO(143, 148, 251, 1),
+                                  Color.fromRGBO(143, 148, 251, .6),
+                                ])),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SignUpScreen(),
+                                  ),
+                                );
+                              },
+                              child: Center(
+                                child: Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Medium',
+                                      shadows: [
+                                        Shadow(
+                                          blurRadius: 5.0,
+                                          color: Colors.black.withOpacity(0.8),
+                                          offset: Offset(3.0, 3.0),
+                                        )
+                                      ]),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -218,7 +265,13 @@ class LoginPage extends StatelessWidget {
                               style: TextStyle(
                                   color: Color.fromRGBO(143, 148, 251, 1),
                                   fontFamily: 'Medium',
-                                  shadows: [Shadow(blurRadius:5.0, color: Colors.black.withOpacity(0.8), offset: Offset(3.0, 3.0),)])),
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 5.0,
+                                      color: Colors.black.withOpacity(0.8),
+                                      offset: Offset(3.0, 3.0),
+                                    )
+                                  ])),
                         ),
                       ],
                     ),
@@ -227,7 +280,9 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-        ]));
+        ],
+      ),
+    );
   }
 
   Widget buildButton(String text) {
@@ -252,11 +307,49 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> _login(BuildContext context) async {
+    String username = _usernameController.text;
+    String password = _passwordController.text;
+    bool isAuthenticated = _authenticateUser(username, password);
+
+  Map<String, String> credentials = {
+    'username': username,
+    'password': password,
+  };
+
+    try {
+    final response = await http.post(
+      Uri.parse('$baseUrl/login'), 
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(credentials),
+    );
+
+    if (response.statusCode == 200) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NavigationPage(),
+        ),
+      );
+    } else {
+      print('Authentication failed: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Exception occurred: $e');
+  }
+}
+
+  bool _authenticateUser(String username, String password) {
+    return true;
+  }
 }
 
 class NavigationPage extends StatelessWidget {
   @override
-  Widget build(BuildContext contex) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Navbar(body: HomePage2()),
     );

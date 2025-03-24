@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
@@ -48,7 +49,7 @@ class CollaboratorsPage extends StatelessWidget {
             CollaboratorCard(
               name: 'Leo Club',
               description:
-                  'Leo Club is a community that whatever blah blah blah.',
+                  'Leo Club is a community thats spread through out the whole country inside various communities specially such as university communities where it works under state regions of the country, Which use common causes as this to help the people in need and spread humanity and unity.',
             ),
             CollaboratorCard(
               name: 'SLRCS',
@@ -78,13 +79,16 @@ class CollaboratorsPage extends StatelessWidget {
                   icon: Icons.local_hospital,
                   title: 'Ambulance',
                   onPressed: () {
-                    //action
+                    _launchURL ('tel:991');
+                    
                   },
                 ),
                 ServiceCard(
                   icon: Icons.phone,
                   title: 'Calls',
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchURL ('tel:0716254427');
+                  },
                 ),
               ],
             ),
@@ -95,12 +99,16 @@ class CollaboratorsPage extends StatelessWidget {
                 ServiceCard(
                   icon: Icons.monetization_on,
                   title: 'Money',
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchURL ('https://example.com/finance');
+                  },
                 ),
                 ServiceCard(
                   icon: Icons.local_offer,
                   title: 'Insurance',
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchURL('https://example.com/insurance');
+                  },
                 ),
               ],
             ),
@@ -110,6 +118,14 @@ class CollaboratorsPage extends StatelessWidget {
     );
   }
 }
+
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
 class CollaboratorCard extends StatefulWidget {
   final String name;
@@ -218,7 +234,7 @@ class _CollaboratorCardState extends State<CollaboratorCard> {
 class ServiceCard extends StatelessWidget {
   final IconData icon;
   final String title;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
 
   final double horizontalPadding = 40;
   final double verticalPadding = 25;
@@ -227,7 +243,7 @@ class ServiceCard extends StatelessWidget {
     Key? key,
     required this.icon,
     required this.title,
-    this.onPressed,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
